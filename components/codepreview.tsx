@@ -12,7 +12,7 @@ export default function CodePreview() {
         </div>
         <pre className="text-sm text-gray-300 overflow-x-auto whitespace-pre-wrap">
           {`// Fetch a random quote
-const response = await fetch('https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/quotes');
+const response = await fetch('https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/api/quotes');
 const data = await response.json();
 
 console.log(data);

@@ -6,7 +6,7 @@ export const runtime = "edge";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
@@ -23,10 +23,11 @@ export async function GET(
       });
     }
 
+    const id = (await params).id;
     const { data, error } = await supabase
       .from("quotes")
       .select("*")
-      .eq("id", params.id)
+      .eq("id", id)
       .single();
 
     if (error) {

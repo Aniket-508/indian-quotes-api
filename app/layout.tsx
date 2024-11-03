@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       "Free, open-source API delivering curated quotes from India's most successful entrepreneurs.",
     images:
-      "https://ik.imagekit.io/2oajjadqkz/portfolio-image.png?updatedAt=1708090929752",
+      "https://ik.imagekit.io/2oajjadqkz/Indian%20Quotes%20API%20OG%20Image.jpg?updatedAt=1730628235038",
   },
   twitter: {
     card: "summary",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     description:
       "Free, open-source API delivering curated quotes from India's most successful entrepreneurs.",
     images:
-      "https://ik.imagekit.io/2oajjadqkz/portfolio-image.png?updatedAt=1708090929752",
+      "https://ik.imagekit.io/2oajjadqkz/Indian%20Quotes%20API%20OG%20Image.jpg?updatedAt=1730628235038",
   },
 };
 

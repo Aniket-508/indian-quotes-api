@@ -22,9 +22,8 @@ export async function GET(request: Request) {
     }
 
     const { data, error } = await supabase
-      .from("quotes")
+      .from("random_quotes")
       .select("*")
-      .order("RANDOM()")
       .limit(1)
       .single();
 

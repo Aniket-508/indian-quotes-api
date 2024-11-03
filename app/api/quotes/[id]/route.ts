@@ -26,7 +26,7 @@ export async function GET(
     const id = (await params).id;
     const { data, error } = await supabase
       .from("quotes")
-      .select("*")
+      .select("*, author (*, company (*))")
       .eq("id", id)
       .single();
 

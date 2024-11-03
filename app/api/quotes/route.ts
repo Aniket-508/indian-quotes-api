@@ -42,11 +42,13 @@ export async function GET(request: Request) {
       tags,
     } = QuerySchema.parse(query);
 
-    let quotesQuery = supabase.from("quotes").select("*", { count: "exact" });
+    let quotesQuery = supabase
+      .from("quotes")
+      .select("*, author (*, company (*))", { count: "exact" });
 
     // Apply filters if provided
-    if (author) quotesQuery = quotesQuery.ilike("author", `%${author}%`);
-    if (company) quotesQuery = quotesQuery.ilike("company", `%${company}%`);
+    if (author) quotesQuery = quotesQuery.ilike("author.name", `%${author}%`);
+    if (company) quotesQuery = quotesQuery.ilike("author.company.name", `%${company}%`);
     if (tags) quotesQuery = quotesQuery.contains("tags", [tags]);
 
     // Apply pagination

@@ -23,7 +23,7 @@ export async function GET(request: Request) {
 
     const { data, error } = await supabase
       .from("random_quotes")
-      .select("*")
+      .select("*, author (*, company (*))")
       .limit(1)
       .single();
 

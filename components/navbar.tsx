@@ -23,7 +23,7 @@ export default function Navbar() {
             Docs
           </Link>
           <Link
-            href="https://github.com/quoteapi/quotes"
+            href={ROUTES.GITHUB}
             target="_blank"
             className={buttonVariants({ variant: "default" })}
           >

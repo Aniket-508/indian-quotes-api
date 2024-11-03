@@ -5,6 +5,7 @@ import CodePreview from "@/components/codepreview";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
 import Features from "@/components/features";
+import { ROUTES } from "@/lib/routes";
 
 export default function Home() {
   return (
@@ -39,11 +40,15 @@ export default function Home() {
             </span>
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button className="bg-indigo-600 hover:bg-indigo-700" size="lg">
+            <Button
+              className="bg-indigo-600 hover:bg-indigo-700"
+              size="lg"
+              asChild
+            >
               <Link href="#docs">Get Started</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link href="https://github.com/quoteapi/quotes">
+              <Link href={ROUTES.GITHUB} target="_blank">
                 View on GitHub
               </Link>
             </Button>

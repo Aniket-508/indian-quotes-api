@@ -20,7 +20,7 @@ console.log(data);
 {
   "quote": "None can destroy iron, but its own rust can. Likewise, none can destroy a person, but their own mindset can.",
   "author": "Ratan Tata",
-  "author_image": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Ratan_Tata_2011_%28The_TCS_Story_Launch_-_CII%29_%28cropped%29.jpg",
+  "author_img": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Ratan_Tata_2011_%28The_TCS_Story_Launch_-_CII%29_%28cropped%29.jpg",
   "author_url": "https://en.wikipedia.org/wiki/Ratan_Tata",
   "company": "Tata Group",
   "company_url"": "https://en.wikipedia.org/wiki/Tata_Group",

@@ -31,7 +31,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="flex items-center space-x-4 justify-between border-t border-gray-100 py-6 text-sm text-gray-600">
+        <div className="flex items-center space-x-4 justify-between border-t border-gray-100 py-6 text-xs text-gray-600">
           <Link
             href="https://aniket-pawar.vercel.app/"
             target="_blank"
@@ -40,15 +40,17 @@ export default function Footer() {
             <Image
               src="https://ik.imagekit.io/2oajjadqkz/profile.jpg?updatedAt=1730618069252"
               alt="Aniket Pawar"
-              width={20}
-              height={20}
+              width={16}
+              height={16}
               className="rounded-full mr-2"
             />
             Made in 🇮🇳 by Aniket Pawar
           </Link>
           <span>
-            © {new Date().getFullYear()} QuoteAPI. Open-source under MIT
-            License.
+            © {new Date().getFullYear()} IndianQuotesAPI.{" "}
+            <span className="hidden sm:inline">
+              Open-source under MIT License.
+            </span>
           </span>
         </div>
       </div>

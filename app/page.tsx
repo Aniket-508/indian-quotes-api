@@ -45,7 +45,7 @@ export default function Home() {
               size="lg"
               asChild
             >
-              <Link href="#docs">Get Started</Link>
+              <Link href={ROUTES.DOCS}>Get Started</Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
               <Link href={ROUTES.GITHUB} target="_blank">

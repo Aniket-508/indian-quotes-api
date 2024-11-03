@@ -1,4 +1,5 @@
 export const ROUTES = {
+  HOME: "/",
   QUOTES: "/api/quotes",
   DOCS: "/docs",
   STATS: "quickstart",

@@ -15,7 +15,7 @@ export default function Footer() {
               entrepreneurial leaders.
             </p>
           </div>
-          <div className="justify-self-end">
+          <div>
             <h4 className="font-semibold text-gray-900 mb-4">Documentation</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>

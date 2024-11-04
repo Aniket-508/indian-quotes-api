@@ -6,7 +6,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
-import { processAuthor } from "@/lib/utils";
+import { titleCase } from "@/lib/utils";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
@@ -27,7 +27,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const author = decodeURIComponent((await params).slug);
-  const processedAuthor = processAuthor(author);
+  const processedAuthor = titleCase(author);
   return {
     title: `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`,
     description: `Collection of inspirational quotes by ${processedAuthor}`,
@@ -62,7 +62,7 @@ export default async function AuthorPage({
     ...new Set(quotes.map((quote) => quote.author.company.name)),
   ];
 
-  const processedAuthor = processAuthor(author);
+  const processedAuthor = titleCase(author);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">

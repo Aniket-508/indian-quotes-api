@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
-import { supabase } from "@/lib/supabase";
 import Highlight from "@/components/ui/highlight";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
+import { supabase } from "@/lib/supabase";
+import { titleCase } from "@/lib/utils";
 
 // Generate static params for common companies
 export async function generateStaticParams() {
@@ -25,9 +26,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const company = decodeURIComponent((await params).slug);
+  const processedCompany = titleCase(company);
   return {
-    title: `${company} Quotes - Indian Entrepreneur Quotes API`,
-    description: `Inspirational quotes from entrepreneurs at ${company}`,
+    title: `${processedCompany} Quotes - Indian Entrepreneur Quotes API`,
+    description: `Inspirational quotes from entrepreneurs at ${processedCompany}`,
   };
 }
 

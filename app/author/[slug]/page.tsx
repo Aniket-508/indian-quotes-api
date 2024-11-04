@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
-import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 import Highlight from "@/components/ui/highlight";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Badge } from "@/components/ui/badge";
+import { Badge, badgeVariants } from "@/components/ui/badge";
+import { supabase } from "@/lib/supabase";
+import { processAuthor } from "@/lib/utils";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
@@ -25,9 +27,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const author = decodeURIComponent((await params).slug);
+  const processedAuthor = processAuthor(author);
   return {
-    title: `${author} Quotes - Indian Entrepreneur Quotes API`,
-    description: `Collection of inspirational quotes by ${author}`,
+    title: `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`,
+    description: `Collection of inspirational quotes by ${processedAuthor}`,
   };
 }
 
@@ -43,7 +46,10 @@ export default async function AuthorPage({
 
   const { data: quotes, error } = await supabase
     .from("quotes")
-    .select("*, author!inner (*, company (*))")
+    .select(
+      `*,
+      author!inner(*, company!inner (*))`
+    )
     .eq("author.slug", author)
     .order("created_at", { ascending: false });
 
@@ -52,32 +58,35 @@ export default async function AuthorPage({
   }
 
   // Get unique companies
-  // const companies = [
-  //   ...new Set(quotes.map((quote) => quote.author.company.name)),
-  // ];
+  const companies = [
+    ...new Set(quotes.map((quote) => quote.author.company.name)),
+  ];
+
+  const processedAuthor = processAuthor(author);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
-      <div className="container mx-auto px-6 pt-24 pb-12">
+      <div className="container mx-auto px-6 pt-24 pb-12 grow">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 capitalize font-bricolage">
-              {author}
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-bricolage">
+              {processedAuthor}
             </h1>
-            {/* <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-4">
               {companies.map((company) => (
-                <a
+                <Link
                   key={company}
                   href={`/company/${encodeURIComponent(company)}`}
-                  className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800 hover:bg-indigo-200 transition-colors"
+                  className={badgeVariants({ variant: "default", size: "lg" })}
                 >
                   {company}
-                </a>
+                </Link>
               ))}
-            </div> */}
+            </div>
             <p className="text-base md:text-lg text-gray-600">
-              Inspiring quotes and wisdom from <Highlight>{author}</Highlight>
+              Inspiring quotes and wisdom from{" "}
+              <Highlight>{processedAuthor}</Highlight>
             </p>
           </div>
 
@@ -96,14 +105,14 @@ export default async function AuthorPage({
                     <footer>
                       <p className="text-gray-600">
                         at{" "}
-                        {/* <a
+                        <a
                           href={`/company/${encodeURIComponent(
-                            quote.author.company.name
+                            quote.author.company.slug
                           )}`}
                           className="font-medium text-indigo-600 hover:text-indigo-700"
                         >
                           {quote.author.company.name}
-                        </a> */}
+                        </a>
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {quote.tags?.map((tag: string) => (

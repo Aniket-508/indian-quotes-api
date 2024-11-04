@@ -43,7 +43,10 @@ export default async function CompanyPage({
 
   const { data: quotes, error } = await supabase
     .from("quotes")
-    .select("*, author!inner (*, company (*))")
+    .select(
+      `*,
+      author!inner(*, company!inner (*))`
+    )
     .eq("author.company.slug", company)
     .order("created_at", { ascending: false });
 
@@ -52,9 +55,9 @@ export default async function CompanyPage({
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
-      <div className="container mx-auto px-6 pt-24 pb-12">
+      <div className="container mx-auto px-6 pt-24 pb-12 grow">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 capitalize font-bricolage">
@@ -83,7 +86,7 @@ export default async function CompanyPage({
                         —{" "}
                         <a
                           href={`/author/${encodeURIComponent(
-                            quote.author.name
+                            quote.author.slug
                           )}`}
                           className="font-medium text-indigo-600 hover:text-indigo-700"
                         >

@@ -19,9 +19,12 @@ export default function Footer() {
             <h4 className="font-semibold text-gray-900 mb-4">Documentation</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <a href="#quickstart" className="hover:text-indigo-600">
+                <Link
+                  href={`${ROUTES.HOME}#quickstart`}
+                  className="hover:text-indigo-600"
+                >
                   Quick Start
-                </a>
+                </Link>
               </li>
               <li>
                 <Link href={ROUTES.DOCS} className="hover:text-indigo-600">
@@ -42,7 +45,7 @@ export default function Footer() {
               alt="Aniket Pawar"
               width={16}
               height={16}
-              className="rounded-full mr-2"
+              className="rounded-full mr-2 hidden sm:inline"
             />
             Made in 🇮🇳 by Aniket Pawar
           </Link>

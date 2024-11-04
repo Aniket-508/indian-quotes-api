@@ -5,6 +5,7 @@ import CodePreview from "@/components/codepreview";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
 import Features from "@/components/features";
+import Highlight from "@/components/ui/highlight";
 import { ROUTES } from "@/lib/routes";
 
 export default function Home() {
@@ -35,9 +36,7 @@ export default function Home() {
             most successful entrepreneurs.
             <br />
             No API key required. Built{" "}
-            <span className="bg-indigo-50 py-0.5 px-1 rounded-sm text-indigo-600">
-              by developers, for developers.
-            </span>
+            <Highlight>by developers, for developers.</Highlight>
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button

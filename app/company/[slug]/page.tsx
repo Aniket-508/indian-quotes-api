@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     .select("*")
     .order("id");
 
-  const uniqueCompanies = [...new Set(companies?.map((q) => q.name))];
+  const uniqueCompanies = [...new Set(companies?.map((q) => q.slug))];
   return uniqueCompanies.map((company) => ({
     slug: encodeURIComponent(company),
   }));
@@ -43,8 +43,8 @@ export default async function CompanyPage({
 
   const { data: quotes, error } = await supabase
     .from("quotes")
-    .select("*, author (*, company (*))")
-    .eq("author.company.name", company)
+    .select("*, author!inner (*, company (*))")
+    .eq("author.company.slug", company)
     .order("created_at", { ascending: false });
 
   if (error || !quotes.length) {
@@ -57,10 +57,10 @@ export default async function CompanyPage({
       <div className="container mx-auto px-6 pt-24 pb-12">
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 capitalize font-bricolage">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 capitalize font-bricolage">
               {company}
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               Discover inspiring quotes from entrepreneurs at{" "}
               <Highlight>{company}</Highlight>
             </p>
@@ -75,7 +75,7 @@ export default async function CompanyPage({
                 <div className="flex items-start gap-4">
                   <Quote className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" />
                   <div>
-                    <blockquote className="text-xl text-gray-900 mb-4">
+                    <blockquote className="text-lg sm:text-xl text-gray-900 mb-4">
                       &quot;{quote.quote}&quot;
                     </blockquote>
                     <footer>
@@ -89,17 +89,10 @@ export default async function CompanyPage({
                         >
                           {quote.author.name}
                         </a>
-                        {quote.author.company?.name &&
-                          `, ${quote.author.company.name}`}
                       </p>
                       <div className="mt-4 flex flex-wrap gap-2">
                         {quote.tags?.map((tag: string) => (
-                          <Badge
-                            key={tag}
-                            className="bg-indigo-100 text-indigo-800"
-                          >
-                            {tag}
-                          </Badge>
+                          <Badge key={tag}>{tag}</Badge>
                         ))}
                       </div>
                     </footer>

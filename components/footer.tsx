@@ -20,7 +20,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
                 <Link
-                  href={`${ROUTES.HOME}#quickstart`}
+                  href={`${ROUTES.HOME}#${ROUTES.QUICKSTART}`}
                   className="hover:text-indigo-600"
                 >
                   Quick Start

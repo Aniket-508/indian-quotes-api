@@ -55,11 +55,11 @@ export default function Home() {
         </div>
 
         {/* Code Preview */}
-        <div id="quickstart" className="max-w-3xl mx-auto pt-20">
+        <div id={ROUTES.QUICKSTART} className="max-w-3xl mx-auto pt-20">
           <CodePreview />
         </div>
 
-        <div id="features" className="grid md:grid-cols-3 gap-8 py-32">
+        <div id={ROUTES.FEATURES} className="grid md:grid-cols-3 gap-8 py-32">
           <Features />
         </div>
 

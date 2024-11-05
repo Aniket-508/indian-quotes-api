@@ -37,7 +37,7 @@ export default function Navbar() {
         </Button>
         <div className="items-center space-x-4 hidden sm:flex">
           <Link
-            href="#features"
+            href={`${ROUTES.HOME}#${ROUTES.FEATURES}`}
             className={buttonVariants({ variant: "link" })}
           >
             Features
@@ -70,7 +70,10 @@ export default function Navbar() {
           openSidebar && "pointer-events-auto opacity-100"
         )}
       >
-        <Link href="#features" className={buttonVariants({ variant: "link" })}>
+        <Link
+          href={`${ROUTES.HOME}#${ROUTES.FEATURES}`}
+          className={buttonVariants({ variant: "link" })}
+        >
           Features
         </Link>
         <Link

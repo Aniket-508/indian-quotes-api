@@ -2,7 +2,7 @@ export const ROUTES = {
   HOME: "/",
   DOCS: "/docs",
   RANDOM: "/random",
-  STATS: "quickstart",
+  QUICKSTART: "quickstart",
   FEATURES: "features",
   GITHUB: "https://github.com/Aniket-508/indian-quotes-api",
 };

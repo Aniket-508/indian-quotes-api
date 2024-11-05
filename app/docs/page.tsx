@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CodeBlock from "@/components/ui/codeblock";
-import { API_JSON_OUTPUT } from "@/constants/code";
+import { API_JSON_OUTPUT } from "@/lib/code";
 
 export const metadata = {
   title: "API Documentation - Indian Entrepreneur Quotes API",

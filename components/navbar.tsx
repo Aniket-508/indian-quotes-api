@@ -43,6 +43,12 @@ export default function Navbar() {
             Features
           </Link>
           <Link
+            href={ROUTES.RANDOM}
+            className={buttonVariants({ variant: "link" })}
+          >
+            Random
+          </Link>
+          <Link
             href={ROUTES.DOCS}
             className={buttonVariants({ variant: "link" })}
           >
@@ -66,6 +72,12 @@ export default function Navbar() {
       >
         <Link href="#features" className={buttonVariants({ variant: "link" })}>
           Features
+        </Link>
+        <Link
+          href={ROUTES.RANDOM}
+          className={buttonVariants({ variant: "link" })}
+        >
+          Random
         </Link>
         <Link
           href={ROUTES.DOCS}

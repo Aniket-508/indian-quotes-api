@@ -18,11 +18,6 @@ export const config = {
   runtime: "edge",
 };
 
-// Image metadata
-export const alt = "Indian Entrepreneur Quotes API";
-
-export const contentType = "image/png";
-
 export async function GET(request: Request) {
   try {
     // TODO: Add Font

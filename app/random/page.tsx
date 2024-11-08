@@ -1,11 +1,23 @@
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import RandomQuote from "@/components/randomquote";
+import { RANDOM_QUOTE_METADATA } from "@/lib/meta";
 
 export const metadata = {
-  title: "Random Quote - Indian Entrepreneur Quotes API",
-  description:
-    "Get inspired with random quotes from Indian entrepreneurs and business leaders.",
+  title: RANDOM_QUOTE_METADATA.TITLE,
+  description: RANDOM_QUOTE_METADATA.DESCRIPTION,
+  openGraph: {
+    title: RANDOM_QUOTE_METADATA.TITLE,
+    description: RANDOM_QUOTE_METADATA.DESCRIPTION,
+    url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/random`,
+    images: RANDOM_QUOTE_METADATA.IMAGE,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: RANDOM_QUOTE_METADATA.TITLE,
+    description: RANDOM_QUOTE_METADATA.DESCRIPTION,
+    images: RANDOM_QUOTE_METADATA.IMAGE,
+  },
 };
 
 export default function RandomPage() {

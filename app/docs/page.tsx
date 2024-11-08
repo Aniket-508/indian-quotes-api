@@ -2,11 +2,23 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import CodeBlock from "@/components/ui/codeblock";
 import { API_JSON_OUTPUT } from "@/lib/code";
+import { DOCS_METADATA } from "@/lib/meta";
 
 export const metadata = {
-  title: "API Documentation - Indian Entrepreneur Quotes API",
-  description:
-    "Complete documentation for the Indian Entrepreneur Quotes API endpoints, including examples and usage guidelines.",
+  title: DOCS_METADATA.TITLE,
+  description: DOCS_METADATA.DESCRIPTION,
+  openGraph: {
+    title: DOCS_METADATA.TITLE,
+    description: DOCS_METADATA.DESCRIPTION,
+    url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/docs`,
+    images: DOCS_METADATA.IMAGE,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DOCS_METADATA.TITLE,
+    description: DOCS_METADATA.DESCRIPTION,
+    images: DOCS_METADATA.IMAGE,
+  },
 };
 
 export default function DocsPage() {

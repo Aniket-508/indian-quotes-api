@@ -25,11 +25,29 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const company = decodeURIComponent((await params).slug);
+  const slug = (await params).slug;
+  const company = decodeURIComponent(slug);
   const processedCompany = titleCase(company);
+  const title = `${processedCompany} Quotes - Indian Entrepreneur Quotes API`;
+  const description = `Inspirational quotes from entrepreneurs at ${processedCompany}`;
+  const images = `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/api/og?company=${slug}`;
   return {
-    title: `${processedCompany} Quotes - Indian Entrepreneur Quotes API`,
-    description: `Inspirational quotes from entrepreneurs at ${processedCompany}`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/company/${slug}`,
+      images,
+      locale: "en_US",
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images,
+    },
   };
 }
 
@@ -56,6 +74,8 @@ export default async function CompanyPage({
     notFound();
   }
 
+  const processedCompany = titleCase(company);
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
@@ -63,11 +83,11 @@ export default async function CompanyPage({
         <div className="max-w-4xl mx-auto">
           <div className="mb-12">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 capitalize font-bricolage">
-              {company}
+              {processedCompany}
             </h1>
             <p className="text-base md:text-lg text-gray-600">
               Discover inspiring quotes from entrepreneurs at{" "}
-              <Highlight>{company}</Highlight>
+              <Highlight>{processedCompany}</Highlight>
             </p>
           </div>
 

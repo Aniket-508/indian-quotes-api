@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Bricolage_Grotesque } from "next/font/google";
+import { MAIN_METADATA } from "@/lib/meta";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -24,25 +25,20 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const metadata: Metadata = {
-  title: "IndianQuotesAPI",
-  description:
-    "Free, open-source API delivering curated quotes from India's most successful entrepreneurs.",
+  title: MAIN_METADATA.TITLE,
+  description: MAIN_METADATA.DESCRIPTION,
   openGraph: {
     type: "website",
-    url: "https://indian-quotes-api.vercel.app/",
-    title: "IndianQuotesAPI",
-    description:
-      "Free, open-source API delivering curated quotes from India's most successful entrepreneurs.",
-    images:
-      "https://ik.imagekit.io/2oajjadqkz/Indian%20Quotes%20API%20OG%20Image.jpg?updatedAt=1730628235038",
+    url: process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
+    title: MAIN_METADATA.TITLE,
+    description: MAIN_METADATA.DESCRIPTION,
+    images: MAIN_METADATA.IMAGE,
   },
   twitter: {
     card: "summary",
-    title: "IndianQuotesAPI",
-    description:
-      "Free, open-source API delivering curated quotes from India's most successful entrepreneurs.",
-    images:
-      "https://ik.imagekit.io/2oajjadqkz/Indian%20Quotes%20API%20OG%20Image.jpg?updatedAt=1730628235038",
+    title: MAIN_METADATA.TITLE,
+    description: MAIN_METADATA.DESCRIPTION,
+    images: MAIN_METADATA.IMAGE,
   },
 };
 

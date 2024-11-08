@@ -26,11 +26,29 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const author = decodeURIComponent((await params).slug);
+  const slug = (await params).slug;
+  const author = decodeURIComponent(slug);
   const processedAuthor = titleCase(author);
+  const title = `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`;
+  const description = `Collection of inspirational quotes by ${processedAuthor}.`;
+  const images = `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/api/og?author=${slug}`;
   return {
-    title: `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`,
-    description: `Collection of inspirational quotes by ${processedAuthor}`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/author/${slug}`,
+      images,
+      locale: "en_US",
+      type: "profile",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images,
+    },
   };
 }
 

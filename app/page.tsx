@@ -59,7 +59,7 @@ export default function Home() {
           <CodePreview />
         </div>
 
-        <div id={ROUTES.FEATURES} className="grid md:grid-cols-3 gap-8 py-32">
+        <div id={ROUTES.FEATURES} className="py-32">
           <Features />
         </div>
 

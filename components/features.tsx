@@ -1,57 +1,93 @@
-import { Database, Code, Lock, LucideIcon } from "lucide-react";
+import { Database, Globe, Lock, BookOpen, LucideIcon } from "lucide-react";
 
-interface FeatureCardProps {
-  icon: LucideIcon;
+const featureItems = [
+  {
+    title: "5000+ Curated Quotes",
+    description: "Access an extensive collection of verified quotes.",
+    icon: Database,
+    iconColor: "text-indigo-400",
+    size: "medium",
+  },
+  {
+    title: "Global CDN",
+    description: "Lightning-fast response times with edge caching worldwide.",
+    icon: Globe,
+    iconColor: "text-blue-400",
+    size: "medium",
+  },
+  {
+    title: "No API Key Required",
+    description:
+      "Free and open access with no registration or API key required.",
+    icon: Lock,
+    iconColor: "text-emerald-400",
+    size: "medium",
+  },
+  {
+    title: "Comprehensive Docs",
+    description: "Detailed documentation with examples and usage guidelines.",
+    icon: BookOpen,
+    iconColor: "text-orange-400",
+    size: "medium",
+  },
+] as const;
+
+const sizes = {
+  small: "col-span-1",
+  medium: "col-span-2",
+  large: "col-span-2 row-span-2",
+} as const;
+
+const iconSizes = {
+  small: "w-8 h-8",
+  medium: "w-8 h-8",
+  large: "w-10 h-10",
+} as const;
+
+const titleSizes = {
+  small: "text-lg",
+  medium: "text-xl",
+  large: "text-2xl",
+} as const;
+
+interface FeatureItemProps {
   title: string;
-  description: string;
+  description?: string;
+  icon: LucideIcon;
+  iconColor: string;
+  size?: "small" | "medium" | "large";
 }
 
-function FeatureCard({ icon: Icon, title, description }: FeatureCardProps) {
+const FeatureItem = ({
+  title,
+  description,
+  icon: Icon,
+  iconColor,
+  size = "small",
+}: FeatureItemProps) => {
   return (
-    <div className="group relative">
-      <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur opacity-0 group-hover:opacity-25 transition duration-500"></div>
-      <div className="relative bg-white rounded-xl p-8 border border-gray-100 hover:border-transparent transition duration-500">
-        <Icon className="w-10 h-10 text-indigo-600 mb-4" />
-        <h3 className="text-xl font-semibold text-gray-900 mb-2">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+    <div
+      className={`relative group/features ${sizes[size]} bg-white p-6 rounded-xl border border-gray-100 overflow-hidden hover:border-transparent hover:shadow-xl transition-all duration-500`}
+    >
+      <div className="group-hover/features:translate-x-2 transition duration-200">
+        <Icon className={`${iconSizes[size]} ${iconColor} mb-3`} />
+        <h3 className={`${titleSizes[size]} font-bold text-gray-900 mb-2`}>
+          {title}
+        </h3>
+        {description && <p className="text-gray-600">{description}</p>}
       </div>
     </div>
   );
-}
+};
 
 export default function Features() {
   return (
-    <>
-      <FeatureCard
-        icon={Database}
-        title="5000+ Quotes"
-        description="Extensive collection of verified quotes from India's most successful entrepreneurs"
-      />
-      {/* <FeatureCard
-        icon={Globe}
-        title="Global CDN"
-        description="Lightning-fast response times with edge caching worldwide"
-      /> */}
-      <FeatureCard
-        icon={Code}
-        title="Simple Integration"
-        description="Clean, RESTful API with comprehensive documentation"
-      />
-      <FeatureCard
-        icon={Lock}
-        title="No API Key"
-        description="Free and open access. No registration or API key required"
-      />
-      {/* <FeatureCard
-        icon={Cpu}
-        title="99.9% Uptime"
-        description="Enterprise-grade reliability you can count on"
-      /> */}
-      {/* <FeatureCard
-            icon={Zap}
-            title="Real-time Updates"
-            description="New quotes added regularly from verified sources"
-          /> */}
-    </>
+    <div className="max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        {featureItems.map((item) => (
+          <FeatureItem key={item.title} {...item} />
+        ))}
+      </div>
+    </div>
   );
 }

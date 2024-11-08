@@ -33,6 +33,29 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">More</h4>
+            <ul className="space-y-2 text-sm text-gray-600">
+              <li>
+                <Link
+                  className="hover:text-indigo-600"
+                  href={`${ROUTES.CANNY}/feature-requests`}
+                  target="_blank"
+                >
+                  Feedback
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="hover:text-indigo-600"
+                  href={`${ROUTES.CANNY}/changelog`}
+                  target="_blank"
+                >
+                  Changelog
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="flex items-center space-x-4 justify-between border-t border-gray-100 py-6 text-xs text-gray-600">
           <Link

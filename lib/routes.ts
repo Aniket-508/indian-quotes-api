@@ -5,6 +5,7 @@ export const ROUTES = {
   QUICKSTART: "quickstart",
   FEATURES: "features",
   GITHUB: "https://github.com/Aniket-508/indian-quotes-api",
+  CANNY: "https://indian-quotes-api.canny.io",
 };
 
 export const API_ROUTES = {

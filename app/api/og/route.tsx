@@ -20,10 +20,6 @@ export const config = {
 
 // Image metadata
 export const alt = "Indian Entrepreneur Quotes API";
-export const size = {
-  width: 1200,
-  height: 630,
-};
 
 export const contentType = "image/png";
 
@@ -171,7 +167,8 @@ export async function GET(request: Request) {
         </div>
       ),
       {
-        ...size,
+        width: 1200,
+        height: 630,
         // fonts: [
         //   {
         //     name: "Geist",

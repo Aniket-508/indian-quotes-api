@@ -5,13 +5,15 @@ import { z } from "zod";
 
 export const runtime = "edge";
 
-const QuerySchema = z.object({
-  page: z.coerce.number().min(1).default(1),
-  limit: z.coerce.number().min(1).max(100).default(10),
-  author: z.string().optional(),
-  company: z.string().optional(),
-  tags: z.string().optional(),
-});
+const QuerySchema = z
+  .object({
+    page: z.coerce.number().min(1).default(1),
+    limit: z.coerce.number().min(1).max(100).default(10),
+    author: z.string().optional(),
+    company: z.string().optional(),
+    tags: z.string().optional(),
+  })
+  .strict();
 
 export async function GET(request: Request) {
   try {
@@ -34,13 +36,28 @@ export async function GET(request: Request) {
     }
 
     // Validate and parse query parameters
+    const validationResult = QuerySchema.safeParse(query);
+
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          error: "Invalid query parameters",
+          details: validationResult.error.issues.map((issue) => ({
+            path: issue.path.join("."),
+            message: issue.message,
+          })),
+        },
+        { status: 400 }
+      );
+    }
+
     const {
       page,
       limit: pageLimit,
       author,
       company,
       tags,
-    } = QuerySchema.parse(query);
+    } = validationResult.data;
 
     let quotesQuery = supabase.from("quotes").select(
       `*,
@@ -54,11 +71,33 @@ export async function GET(request: Request) {
       quotesQuery = quotesQuery.ilike("author.company.name", `%${company}%`);
     if (tags) quotesQuery = quotesQuery.contains("tags", [tags]);
 
+    // First get the total count
+    const { count, error: countError } = await quotesQuery;
+
+    if (countError) throw countError;
+
+    const totalPages = Math.ceil((count ?? 0) / pageLimit);
+
+    // Check if requested page exists
+    if (page > totalPages) {
+      return NextResponse.json(
+        {
+          error: "Page not found",
+          details: {
+            currentPage: page,
+            totalPages,
+            totalItems: count,
+          },
+        },
+        { status: 404 }
+      );
+    }
+
     // Apply pagination
     const from = (page - 1) * pageLimit;
     const to = from + pageLimit - 1;
 
-    const { data, error, count } = await quotesQuery
+    const { data, error } = await quotesQuery
       .range(from, to)
       .order("created_at", { ascending: false });
 
@@ -70,7 +109,7 @@ export async function GET(request: Request) {
         pagination: {
           page,
           pageSize: pageLimit,
-          totalPages: Math.ceil((count ?? 0) / pageLimit),
+          totalPages,
           totalItems: count,
         },
       },
@@ -83,13 +122,6 @@ export async function GET(request: Request) {
       }
     );
   } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: "Invalid query parameters", details: error.errors },
-        { status: 400 }
-      );
-    }
-
     console.error("Error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import Footer from "@/components/footer";
 import Features from "@/components/features";
 import Highlight from "@/components/ui/highlight";
+import Faces from "@/components/faces";
 import { ROUTES } from "@/lib/routes";
 import PeerlistLaunch from "@/public/peerlist_launch.svg";
 
@@ -18,13 +19,23 @@ export default function Home() {
       {/* Hero Section */}
       <main className="container mx-auto px-6 pt-24">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center bg-indigo-50 px-2.5 py-1.5 gap-1.5 rounded-full text-indigo-600 font-medium text-xs/tight mb-6">
+          {/* Notice Section */}
+          {/* <div className="inline-flex items-center bg-indigo-50 px-2.5 py-1.5 gap-1.5 rounded-full text-indigo-600 font-medium text-xs/tight mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
             </span>
             Open Source API for Indian Entrepreneur Quotes
-          </div>
+          </div> */}
+
+          <Link
+            href={ROUTES.PEERLIST_PROJECT}
+            target="_blank"
+            className="inline-flex justify-center mb-6"
+          >
+            <Image src={PeerlistLaunch} alt="Peerlist Launch" />
+          </Link>
+
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight font-bricolage">
             Inspire Your Next
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
@@ -40,14 +51,8 @@ export default function Home() {
             No API key required. Built{" "}
             <Highlight>by developers, for developers.</Highlight>
           </p>
-          <Link
-            href={ROUTES.PEERLIST_PROJECT}
-            target="_blank"
-            className="inline-flex justify-center my-6"
-          >
-            <Image src={PeerlistLaunch} alt="Peerlist Launch" />
-          </Link>
-          <div className="flex flex-wrap justify-center gap-4">
+
+          <div className="my-6 flex flex-wrap justify-center gap-4">
             <Button
               className="bg-indigo-600 hover:bg-indigo-700"
               size="lg"
@@ -61,6 +66,8 @@ export default function Home() {
               </Link>
             </Button>
           </div>
+
+          <Faces />
         </div>
 
         {/* Code Preview */}

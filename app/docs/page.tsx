@@ -3,6 +3,14 @@ import Footer from "@/components/footer";
 import CodeBlock from "@/components/ui/codeblock";
 import { API_JSON_OUTPUT } from "@/lib/code";
 import { DOCS_METADATA } from "@/lib/meta";
+import {
+  ALLOWED_QUERY_PARAMS,
+  AUTHOR_FIELDS_MAP,
+  COMPANY_FIELDS_MAP,
+  ERROR_CODES_MAP,
+  QUOTE_FIELDS_MAP,
+  RATE_LIMITING_HEADERS,
+} from "@/lib/docs";
 
 export const metadata = {
   title: DOCS_METADATA.TITLE,
@@ -60,42 +68,16 @@ export default function DocsPage() {
                         Quote Fields
                       </h5>
                       <ul className="list-disc list-inside space-y-2 text-gray-600">
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            id
-                          </code>
-                          : Unique identifier (number)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            created_at
-                          </code>
-                          : Creation timestamp (ISO 8601)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            quote
-                          </code>
-                          : The actual quote text (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            tags
-                          </code>
-                          : Array of related tags (string[])
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            author_id
-                          </code>
-                          : Reference to author (number)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            author
-                          </code>
-                          : Nested author object
-                        </li>
+                        {Object.entries(QUOTE_FIELDS_MAP).map(
+                          ([key, description]) => (
+                            <li key={key}>
+                              <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                                {key}
+                              </code>
+                              : {description}
+                            </li>
+                          )
+                        )}
                       </ul>
                     </div>
 
@@ -104,48 +86,16 @@ export default function DocsPage() {
                         Author Fields
                       </h5>
                       <ul className="list-disc list-inside space-y-2 text-gray-600">
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            id
-                          </code>
-                          : Unique identifier (number)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            img
-                          </code>
-                          : Profile image URL (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            url
-                          </code>
-                          : Author&apos;s website/profile (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            name
-                          </code>
-                          : Full name (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            slug
-                          </code>
-                          : URL-friendly name (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            company_id
-                          </code>
-                          : Reference to company (number)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            company
-                          </code>
-                          : Nested company object
-                        </li>
+                        {Object.entries(AUTHOR_FIELDS_MAP).map(
+                          ([key, description]) => (
+                            <li key={key}>
+                              <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                                {key}
+                              </code>
+                              : {description}
+                            </li>
+                          )
+                        )}
                       </ul>
                     </div>
 
@@ -154,36 +104,16 @@ export default function DocsPage() {
                         Company Fields
                       </h5>
                       <ul className="list-disc list-inside space-y-2 text-gray-600">
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            id
-                          </code>
-                          : Unique identifier (number)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            url
-                          </code>
-                          : Company website (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            name
-                          </code>
-                          : Company name (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            slug
-                          </code>
-                          : URL-friendly name (string)
-                        </li>
-                        <li>
-                          <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                            created_at
-                          </code>
-                          : Creation timestamp (ISO 8601)
-                        </li>
+                        {Object.entries(COMPANY_FIELDS_MAP).map(
+                          ([key, description]) => (
+                            <li key={key}>
+                              <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                                {key}
+                              </code>
+                              : {description}
+                            </li>
+                          )
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -201,24 +131,16 @@ export default function DocsPage() {
                   response headers:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-gray-600 mb-4">
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      X-RateLimit-Limit
-                    </code>
-                    : Requests allowed per window
-                  </li>
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      X-RateLimit-Remaining
-                    </code>
-                    : Requests remaining in window
-                  </li>
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      X-RateLimit-Reset
-                    </code>
-                    : Time when the rate limit resets
-                  </li>
+                  {Object.entries(RATE_LIMITING_HEADERS).map(
+                    ([key, description]) => (
+                      <li key={key}>
+                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                          {key}
+                        </code>
+                        : {description}
+                      </li>
+                    )
+                  )}
                 </ul>
               </section>
 
@@ -245,36 +167,16 @@ export default function DocsPage() {
                       Query Parameters
                     </h4>
                     <ul className="list-disc list-inside space-y-2 text-gray-600 mb-4">
-                      <li>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                          page
-                        </code>
-                        : Page number (default: 1)
-                      </li>
-                      <li>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                          limit
-                        </code>
-                        : Items per page (default: 10, max: 100)
-                      </li>
-                      <li>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                          author
-                        </code>
-                        : Filter by author name
-                      </li>
-                      <li>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                          company
-                        </code>
-                        : Filter by company name
-                      </li>
-                      <li>
-                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                          tags
-                        </code>
-                        : Filter by tag
-                      </li>
+                      {Object.entries(ALLOWED_QUERY_PARAMS).map(
+                        ([key, description]) => (
+                          <li key={key}>
+                            <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                              {key}
+                            </code>
+                            : {description}
+                          </li>
+                        )
+                      )}
                     </ul>
 
                     <CodeBlock
@@ -359,36 +261,16 @@ ${API_JSON_OUTPUT}
                   success or failure of requests:
                 </p>
                 <ul className="list-disc list-inside space-y-2 text-gray-600">
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      200
-                    </code>
-                    : Success
-                  </li>
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      400
-                    </code>
-                    : Bad Request - Invalid parameters
-                  </li>
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      404
-                    </code>
-                    : Not Found - Resource doesn&apos;t exist
-                  </li>
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      429
-                    </code>
-                    : Too Many Requests - Rate limit exceeded
-                  </li>
-                  <li>
-                    <code className="text-sm bg-gray-100 px-2 py-1 rounded">
-                      500
-                    </code>
-                    : Internal Server Error
-                  </li>
+                  {Object.entries(ERROR_CODES_MAP).map(
+                    ([code, description]) => (
+                      <li key={code}>
+                        <code className="text-sm bg-gray-100 px-2 py-1 rounded">
+                          {code}
+                        </code>
+                        : {description}
+                      </li>
+                    )
+                  )}
                 </ul>
               </section>
             </div>

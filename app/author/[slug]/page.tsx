@@ -75,10 +75,7 @@ export default async function AuthorPage({
     notFound();
   }
 
-  // Get unique companies
-  const companies = [
-    ...new Set(quotes.map((quote) => quote.author.company.name)),
-  ];
+  const companies = quotes.map((quote) => quote.author.company);
 
   const processedAuthor = titleCase(author);
 
@@ -92,13 +89,13 @@ export default async function AuthorPage({
               {processedAuthor}
             </h1>
             <div className="flex flex-wrap gap-2 mb-4">
-              {companies.map((company) => (
+              {companies.map(({ name, slug }) => (
                 <Link
-                  key={company}
-                  href={`/company/${encodeURIComponent(company)}`}
+                  key={slug}
+                  href={`/company/${encodeURIComponent(slug)}`}
                   className={badgeVariants({ variant: "default", size: "lg" })}
                 >
-                  {company}
+                  {name}
                 </Link>
               ))}
             </div>

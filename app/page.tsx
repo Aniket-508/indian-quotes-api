@@ -44,12 +44,11 @@ export default function Home() {
             </span>
             with Wisdom from India&apos;s Finest
           </h1>
-          <p className="text-lg text-gray-600">
+          <p className="text-base md:text-lg text-gray-600">
             Free, open-source API delivering curated quotes from India&apos;s
             most successful entrepreneurs.
             <br />
-            No API key required. Built{" "}
-            <Highlight>by developers, for developers.</Highlight>
+            Built <Highlight>by developers, for developers.</Highlight>
           </p>
 
           <div className="my-6 flex flex-wrap justify-center gap-4">

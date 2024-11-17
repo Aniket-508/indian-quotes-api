@@ -30,15 +30,29 @@ export default function EndpointCard({
   return (
     <div className="bg-white rounded-xl p-6 border border-gray-200">
       <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           <Badge size="lg" className="bg-green-100 text-green-700">
             {method}
           </Badge>
-          <code className="text-lg text-gray-900">{route}</code>
+          <code className="text-sm sm:text-base md:text-lg text-gray-900">
+            {route}
+          </code>
         </div>
-        <Button variant="ghost" onClick={() => setModalOpen(true)}>
+        <Button
+          variant="ghost"
+          className="hidden md:inline-flex"
+          onClick={() => setModalOpen(true)}
+        >
           <CodeXml />
           Show Code
+        </Button>
+        <Button
+          variant="ghost"
+          className="inline-flex md:hidden"
+          onClick={() => setModalOpen(true)}
+        >
+          <CodeXml />
+          Code
         </Button>
       </div>
       <p className="text-gray-600 mb-4">{description}</p>

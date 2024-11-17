@@ -12,7 +12,6 @@ export default function EndpointCard({
   method,
   route,
   description,
-  pathParams,
   queryParams,
   exampleCode,
   examplePathParams,
@@ -21,7 +20,6 @@ export default function EndpointCard({
   method: string;
   route: string;
   description: string;
-  pathParams?: Record<string, string | number>;
   queryParams?: Record<string, string | number>;
   exampleCode: string;
   examplePathParams?: Record<string, string | number>;

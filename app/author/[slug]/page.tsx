@@ -7,7 +7,7 @@ import Footer from "@/components/footer";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
 import { titleCase } from "@/lib/utils";
-import { BASE_URL, ROUTES } from "@/lib/routes";
+import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
@@ -32,7 +32,7 @@ export async function generateMetadata({
   const processedAuthor = titleCase(author);
   const title = `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`;
   const description = `Collection of inspirational quotes by ${processedAuthor}.`;
-  const images = `${BASE_URL}/api/og?author=${slug}`;
+  const images = `${API_BASE_URL}/og?author=${slug}`;
   return {
     title,
     description,

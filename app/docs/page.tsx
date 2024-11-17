@@ -1,9 +1,5 @@
-import { CodeXml } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import CodeBlock from "@/components/ui/codeblock";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { API_JSON_OUTPUT } from "@/lib/code";
 import { DOCS_METADATA } from "@/lib/meta";
 import {
@@ -12,7 +8,9 @@ import {
   RATE_LIMITING_HEADERS,
   RESPONSE_FIELDS_FORMAT,
 } from "@/lib/docs";
-import { API_ROUTES, BASE_URL } from "@/lib/routes";
+import { API_ROUTES, API_BASE_URL } from "@/lib/routes";
+import FieldList from "@/components/docs/fieldlist";
+import EndpointCard from "@/components/docs/endpointcard";
 
 export const metadata = {
   title: DOCS_METADATA.TITLE,
@@ -68,63 +66,7 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function FieldList({ fields }: { fields: Record<string, string> }) {
-  return (
-    <ul className="list-disc list-inside space-y-2 text-gray-600">
-      {Object.entries(fields).map(([key, description]) => (
-        <li key={key}>
-          <code className="text-sm bg-gray-100 px-2 py-1 rounded">{key}</code>:{" "}
-          {description}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function EndpointCard({
-  method,
-  route,
-  description,
-  queryParams,
-  exampleCode,
-}: {
-  method: string;
-  route: string;
-  description: string;
-  queryParams?: Record<string, string>;
-  exampleCode: string;
-}) {
-  return (
-    <div className="bg-white rounded-xl p-6 border border-gray-200">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-4">
-          <Badge size="lg" className="bg-green-100 text-green-700">
-            {method}
-          </Badge>
-          <code className="text-lg text-gray-900">{route}</code>
-        </div>
-        <Button variant="ghost">
-          <CodeXml />
-          Show Code
-        </Button>
-      </div>
-      <p className="text-gray-600 mb-4">{description}</p>
-
-      {queryParams && (
-        <div className="mb-4">
-          <h4 className="font-semibold text-gray-900 mb-2">Query Parameters</h4>
-          <FieldList fields={queryParams} />
-        </div>
-      )}
-
-      <CodeBlock code={exampleCode} />
-    </div>
-  );
-}
-
 export default function DocsPage() {
-  const baseUrl = `${BASE_URL}/api`;
-
   return (
     <DocsLayout>
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -135,7 +77,7 @@ export default function DocsPage() {
         {/* Base URL Section */}
         <DocsSection title="Base URL">
           <div className="bg-white rounded-lg p-4 border border-gray-200">
-            <code className="text-indigo-600">{baseUrl}</code>
+            <code className="text-indigo-600">{API_BASE_URL}</code>
           </div>
         </DocsSection>
 
@@ -174,8 +116,14 @@ export default function DocsPage() {
               route={API_ROUTES.QUOTES}
               description="Get a paginated list of quotes with optional filters."
               queryParams={ALLOWED_QUERY_PARAMS}
+              exampleQueryParams={{
+                page: 1,
+                limit: 10,
+                author: "Ratan Tata",
+                company: "Tata",
+              }}
               exampleCode={`// Example: Get quotes from Ratan Tata
-const response = await fetch('${baseUrl}${API_ROUTES.QUOTES}?author=Ratan%20Tata');
+const response = await fetch('${API_BASE_URL}${API_ROUTES.QUOTES}?author=Ratan%20Tata');
 const data = await response.json();
 
 console.log(data);
@@ -197,8 +145,9 @@ console.log(data);
               method="GET"
               route={`${API_ROUTES.QUOTES}/{id}`}
               description="Get a specific quote by ID."
+              examplePathParams={{ id: 1 }}
               exampleCode={`// Example: Get quote with ID 1
-const response = await fetch('${baseUrl}${API_ROUTES.QUOTES}/1');
+const response = await fetch('${API_BASE_URL}${API_ROUTES.QUOTES}/1');
 const data = await response.json();
 
 console.log(data);
@@ -213,7 +162,7 @@ ${API_JSON_OUTPUT}
               route={`${API_ROUTES.QUOTES}${API_ROUTES.RANDOM}`}
               description="Get a random quote."
               exampleCode={`// Example: Get a random quote
-const response = await fetch('${baseUrl}${API_ROUTES.QUOTES}${API_ROUTES.RANDOM}');
+const response = await fetch('${API_BASE_URL}${API_ROUTES.QUOTES}${API_ROUTES.RANDOM}');
 const data = await response.json();
 
 console.log(data);

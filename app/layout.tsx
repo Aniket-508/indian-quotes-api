@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Bricolage_Grotesque } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 import { MAIN_METADATA } from "@/lib/meta";
 import "./globals.css";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${bricolage.variable} antialiased`}
       >
         {children}
+        <Toaster richColors />
       </body>
     </html>
   );

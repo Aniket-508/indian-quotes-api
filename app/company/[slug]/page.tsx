@@ -6,7 +6,7 @@ import Footer from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
 import { titleCase } from "@/lib/utils";
-import { BASE_URL, ROUTES } from "@/lib/routes";
+import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
 
 // Generate static params for common companies
 export async function generateStaticParams() {
@@ -31,7 +31,7 @@ export async function generateMetadata({
   const processedCompany = titleCase(company);
   const title = `${processedCompany} Quotes - Indian Entrepreneur Quotes API`;
   const description = `Inspirational quotes from entrepreneurs at ${processedCompany}`;
-  const images = `${BASE_URL}/api/og?company=${slug}`;
+  const images = `${API_BASE_URL}/og?company=${slug}`;
   return {
     title,
     description,

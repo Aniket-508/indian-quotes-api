@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
 import CodeBlock from "../ui/codeblock";
 import FieldList from "./fieldlist";
-import CodeGenModal from "../codegenmodal";
+import CodeGenModal from "./codegenmodal";
 
 export default function EndpointCard({
   method,

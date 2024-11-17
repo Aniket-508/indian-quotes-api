@@ -5,6 +5,7 @@ import { Quote, RefreshCw } from "lucide-react";
 import { useRandomQuote } from "@/hooks/useRandomQuote";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
+import { ROUTES } from "@/lib/routes";
 
 export default function RandomQuote() {
   const { quote, isLoading, refresh } = useRandomQuote();
@@ -37,7 +38,9 @@ export default function RandomQuote() {
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div>
                     <a
-                      href={`/author/${encodeURIComponent(quote.author.slug)}`}
+                      href={`${ROUTES.AUTHOR}/${encodeURIComponent(
+                        quote.author.slug
+                      )}`}
                       className="text-base sm:text-lg font-medium text-indigo-600 hover:text-indigo-700"
                     >
                       {quote.author.name}
@@ -45,7 +48,7 @@ export default function RandomQuote() {
                     <p className="text-gray-600">
                       at{" "}
                       <a
-                        href={`/company/${encodeURIComponent(
+                        href={`${ROUTES.COMPANY}/${encodeURIComponent(
                           quote.author.company.slug
                         )}`}
                         className="text-gray-900 hover:text-indigo-600"

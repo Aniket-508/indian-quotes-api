@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: RANDOM_QUOTE_METADATA.TITLE,
     description: RANDOM_QUOTE_METADATA.DESCRIPTION,
-    url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/random`,
+    url: RANDOM_QUOTE_METADATA.URL,
     images: RANDOM_QUOTE_METADATA.IMAGE,
   },
   twitter: {

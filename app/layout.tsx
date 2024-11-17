@@ -29,7 +29,8 @@ export const metadata: Metadata = {
   description: MAIN_METADATA.DESCRIPTION,
   openGraph: {
     type: "website",
-    url: process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL,
+    siteName: MAIN_METADATA.SITE_NAME,
+    url: MAIN_METADATA.URL,
     title: MAIN_METADATA.TITLE,
     description: MAIN_METADATA.DESCRIPTION,
     images: MAIN_METADATA.IMAGE,

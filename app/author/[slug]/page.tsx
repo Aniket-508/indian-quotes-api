@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
 import { titleCase } from "@/lib/utils";
+import { BASE_URL, ROUTES } from "@/lib/routes";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
@@ -31,14 +32,14 @@ export async function generateMetadata({
   const processedAuthor = titleCase(author);
   const title = `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`;
   const description = `Collection of inspirational quotes by ${processedAuthor}.`;
-  const images = `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/api/og?author=${slug}`;
+  const images = `${BASE_URL}/api/og?author=${slug}`;
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/author/${slug}`,
+      url: `${BASE_URL}${ROUTES.AUTHOR}/${slug}`,
       images,
       locale: "en_US",
       type: "profile",
@@ -92,7 +93,7 @@ export default async function AuthorPage({
               {companies.map(({ name, slug }) => (
                 <Link
                   key={slug}
-                  href={`/company/${encodeURIComponent(slug)}`}
+                  href={`${ROUTES.COMPANY}/${encodeURIComponent(slug)}`}
                   className={badgeVariants({ variant: "default", size: "lg" })}
                 >
                   {name}
@@ -121,7 +122,7 @@ export default async function AuthorPage({
                       <p className="text-gray-600">
                         at{" "}
                         <a
-                          href={`/company/${encodeURIComponent(
+                          href={`${ROUTES.COMPANY}/${encodeURIComponent(
                             quote.author.company.slug
                           )}`}
                           className="font-medium text-indigo-600 hover:text-indigo-700"

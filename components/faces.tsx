@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
+import { BASE_URL, ROUTES } from "@/lib/routes";
 
 const data = [
   {
@@ -33,10 +33,7 @@ export default function Faces() {
   return (
     <div className="flex flex-wrap items-center justify-center text-center gap-y-1 -space-x-1.5">
       {data.map(({ name, image, slug }) => (
-        <Link
-          key={name}
-          href={`https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}${ROUTES.AUTHOR}/${slug}`}
-        >
+        <Link key={name} href={`${BASE_URL}${ROUTES.AUTHOR}/${slug}`}>
           <Image
             key={name}
             src={image}

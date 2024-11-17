@@ -11,6 +11,7 @@ import {
   QUOTE_FIELDS_MAP,
   RATE_LIMITING_HEADERS,
 } from "@/lib/docs";
+import { API_ROUTES, BASE_URL } from "@/lib/routes";
 
 export const metadata = {
   title: DOCS_METADATA.TITLE,
@@ -18,7 +19,7 @@ export const metadata = {
   openGraph: {
     title: DOCS_METADATA.TITLE,
     description: DOCS_METADATA.DESCRIPTION,
-    url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/docs`,
+    url: DOCS_METADATA.URL,
     images: DOCS_METADATA.IMAGE,
   },
   twitter: {
@@ -30,7 +31,7 @@ export const metadata = {
 };
 
 export default function DocsPage() {
-  const baseUrl = `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/api`;
+  const baseUrl = `${BASE_URL}/api`;
 
   return (
     <>
@@ -157,7 +158,9 @@ export default function DocsPage() {
                       <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
                         GET
                       </span>
-                      <code className="text-lg text-gray-900">/quotes</code>
+                      <code className="text-lg text-gray-900">
+                        {API_ROUTES.QUOTES}
+                      </code>
                     </div>
                     <p className="text-gray-600 mb-4">
                       Get a paginated list of quotes with optional filters.
@@ -181,7 +184,7 @@ export default function DocsPage() {
 
                     <CodeBlock
                       code={`// Example: Get quotes from Ratan Tata
-const response = await fetch('${baseUrl}/quotes?author=Ratan%20Tata');
+const response = await fetch('${baseUrl}${API_ROUTES.QUOTES}?author=Ratan%20Tata');
 const data = await response.json();
 
 console.log(data);
@@ -206,7 +209,7 @@ console.log(data);
                         GET
                       </span>
                       <code className="text-lg text-gray-900">
-                        /quotes/{"{id}"}
+                        {API_ROUTES.QUOTES}/{"{id}"}
                       </code>
                     </div>
                     <p className="text-gray-600 mb-4">
@@ -215,7 +218,7 @@ console.log(data);
 
                     <CodeBlock
                       code={`// Example: Get quote with ID 1
-const response = await fetch('${baseUrl}/quotes/1');
+const response = await fetch('${baseUrl}${API_ROUTES.QUOTES}/1');
 const data = await response.json();
 
 console.log(data);
@@ -232,14 +235,15 @@ ${API_JSON_OUTPUT}
                         GET
                       </span>
                       <code className="text-lg text-gray-900">
-                        /quotes/random
+                        {API_ROUTES.QUOTES}
+                        {API_ROUTES.RANDOM}
                       </code>
                     </div>
                     <p className="text-gray-600 mb-4">Get a random quote.</p>
 
                     <CodeBlock
                       code={`// Example: Get a random quote
-const response = await fetch('${baseUrl}/quotes/random');
+const response = await fetch('${baseUrl}${API_ROUTES.QUOTES}${API_ROUTES.RANDOM}');
 const data = await response.json();
 
 console.log(data);

@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
 import { titleCase } from "@/lib/utils";
+import { BASE_URL, ROUTES } from "@/lib/routes";
 
 // Generate static params for common companies
 export async function generateStaticParams() {
@@ -30,14 +31,14 @@ export async function generateMetadata({
   const processedCompany = titleCase(company);
   const title = `${processedCompany} Quotes - Indian Entrepreneur Quotes API`;
   const description = `Inspirational quotes from entrepreneurs at ${processedCompany}`;
-  const images = `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/api/og?company=${slug}`;
+  const images = `${BASE_URL}/api/og?company=${slug}`;
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      url: `${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}/company/${slug}`,
+      url: `${BASE_URL}${ROUTES.COMPANY}/${slug}`,
       images,
       locale: "en_US",
       type: "profile",
@@ -107,7 +108,7 @@ export default async function CompanyPage({
                       <p className="text-gray-600">
                         —{" "}
                         <a
-                          href={`/author/${encodeURIComponent(
+                          href={`${ROUTES.AUTHOR}/${encodeURIComponent(
                             quote.author.slug
                           )}`}
                           className="font-medium text-indigo-600 hover:text-indigo-700"

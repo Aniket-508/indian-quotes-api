@@ -46,3 +46,18 @@ export const ALLOWED_QUERY_PARAMS = {
   company: "Filter by company name",
   tags: "Filter by tag",
 };
+
+export const RESPONSE_FIELDS_FORMAT = [
+  {
+    title: "Quote Fields",
+    fields: QUOTE_FIELDS_MAP,
+  },
+  {
+    title: "Author Fields",
+    fields: AUTHOR_FIELDS_MAP,
+  },
+  {
+    title: "Company Fields",
+    fields: COMPANY_FIELDS_MAP,
+  },
+];

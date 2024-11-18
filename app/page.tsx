@@ -9,7 +9,7 @@ import Features from "@/components/features";
 import Highlight from "@/components/ui/highlight";
 import Faces from "@/components/faces";
 import { ROUTES } from "@/lib/routes";
-import PeerlistLaunch from "@/public/peerlist_launch.svg";
+import PeerlistWinner from "@/public/peerlist-winner.svg";
 
 export default function Home() {
   return (
@@ -33,7 +33,7 @@ export default function Home() {
             target="_blank"
             className="inline-flex justify-center mb-6"
           >
-            <Image src={PeerlistLaunch} alt="Peerlist Launch" />
+            <Image src={PeerlistWinner} alt="Peerlist Launch" />
           </Link>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight font-bricolage">

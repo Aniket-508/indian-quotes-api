@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
-import Link from "next/link";
 import Highlight from "@/components/ui/highlight";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import { Badge, badgeVariants } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/lib/supabase";
 import { titleCase } from "@/lib/utils";
 import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
@@ -76,8 +75,6 @@ export default async function AuthorPage({
     notFound();
   }
 
-  const companies = quotes.map((quote) => quote.author.company);
-
   const processedAuthor = titleCase(author);
 
   return (
@@ -89,17 +86,6 @@ export default async function AuthorPage({
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-bricolage">
               {processedAuthor}
             </h1>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {companies.map(({ name, slug }) => (
-                <Link
-                  key={slug}
-                  href={`${ROUTES.COMPANY}/${encodeURIComponent(slug)}`}
-                  className={badgeVariants({ variant: "default", size: "lg" })}
-                >
-                  {name}
-                </Link>
-              ))}
-            </div>
             <p className="text-base md:text-lg text-gray-600">
               Inspiring quotes and wisdom from{" "}
               <Highlight>{processedAuthor}</Highlight>

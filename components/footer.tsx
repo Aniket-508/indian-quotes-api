@@ -73,7 +73,7 @@ export default function Footer() {
             Made in 🇮🇳 by Aniket Pawar
           </Link>
           <span>
-            © {new Date().getFullYear()} IndianQuotesAPI.{" "}
+            © {new Date().getFullYear()} Indian Quotes API.{" "}
             <span className="hidden sm:inline">
               Open-source under MIT License.
             </span>

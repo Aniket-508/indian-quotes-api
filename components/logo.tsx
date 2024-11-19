@@ -11,7 +11,7 @@ export default function Logo({ className }: { className?: string }) {
     >
       <Quote className="size-5 text-indigo-600" />
       <span className="text-lg font-semibold text-gray-900">
-        IndianQuotesAPI
+        Indian Quotes API
       </span>
     </Link>
   );

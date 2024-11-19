@@ -115,7 +115,7 @@ export async function GET(request: Request) {
                 fontWeight: "600",
               }}
             >
-              IndianQuotesAPI
+              Indian Quotes API
             </div>
           </div>
           <div

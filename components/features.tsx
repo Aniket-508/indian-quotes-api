@@ -2,7 +2,7 @@ import { Database, Globe, Lock, BookOpen, LucideIcon } from "lucide-react";
 
 const featureItems = [
   {
-    title: "5000+ Curated Quotes",
+    title: "100+ Curated Quotes",
     description: "Access an extensive collection of verified quotes.",
     icon: Database,
     iconColor: "text-indigo-400",

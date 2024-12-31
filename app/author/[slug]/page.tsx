@@ -29,7 +29,7 @@ export async function generateMetadata({
   const slug = (await params).slug;
   const author = decodeURIComponent(slug);
   const processedAuthor = titleCase(author);
-  const title = `${processedAuthor} Quotes - Indian Entrepreneur Quotes API`;
+  const title = `${processedAuthor} Quotes - Indian Quotes API`;
   const description = `Collection of inspirational quotes by ${processedAuthor}.`;
   const images = `${API_BASE_URL}/og?author=${slug}`;
   return {

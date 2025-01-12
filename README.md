@@ -4,6 +4,9 @@
 [![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/Aniket-508/indian-quotes-api/blob/main/LICENSE)
 </div>
 
+[![Image](https://ik.imagekit.io/2oajjadqkz/1731074413647.jpg?updatedAt=1731074450615 "Indian Quotes API Front Page")](https://indian-quotes-api.vercel.app/)
+
+
 # Indian Quotes API
 
 Indian Quotes API is a simple RESTful API that provides a curated collection of inspiring and thought-provoking quotes by renowned Indian personalities. This API can be used in web/mobile applications to fetch random quotes or retrieve quotes by specific personalities or topics.

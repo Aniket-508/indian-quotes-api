@@ -2,10 +2,10 @@
 
 [![Start](https://img.shields.io/github/stars/Aniket-508/indian-quotes-api?color=yellow&style=flat&label=%E2%AD%90%20stars)](https://github.com/Aniket-508/indian-quotes-api/stargazers)
 [![License](http://img.shields.io/:license-MIT-green.svg?style=flat)](https://github.com/Aniket-508/indian-quotes-api/blob/main/LICENSE)
+
 </div>
 
 [![Image](https://ik.imagekit.io/2oajjadqkz/1731074413647.jpg?updatedAt=1731074450615 "Indian Quotes API Front Page")](https://indian-quotes-api.vercel.app/)
-
 
 # Indian Quotes API
 
@@ -18,6 +18,10 @@ Indian Quotes API is a simple RESTful API that provides a curated collection of 
 - Free and open access with no registration or API key required.
 - Detailed documentation with examples and usage guidelines.
 
+## Rate Limit
+
+There is a rate limit of **100 requests per minute**, per IP address. If you exceed the rate limit, the API will respond with a `429` error.
+
 ## Getting Started
 
 ### Prerequisites
@@ -27,21 +31,25 @@ Indian Quotes API is a simple RESTful API that provides a curated collection of 
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/Aniket-508/indian-quotes-api.git
    ```
 
 2. Navigate to the project directory:
+
    ```bash
    cd indian-quotes-api
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
 
 4. Start the server:
+
    ```bash
    npm start
    ```

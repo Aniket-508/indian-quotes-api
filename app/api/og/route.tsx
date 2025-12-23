@@ -1,5 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { supabase } from "@/lib/supabase";
+import {
+  getQuotesByAuthorSlug,
+  getQuotesByCompanySlug,
+} from "@/lib/quotes-data";
 import { ImageResponse } from "@vercel/og";
 import { z } from "zod";
 
@@ -39,34 +42,28 @@ export async function GET(request: Request) {
       QuerySchema.parse(query);
 
     if (authorQuery) {
-      const { data: authors, error } = await supabase
-        .from("author")
-        .select("*")
-        .eq("slug", authorQuery);
-
-      if (error || authors.length === 0) throw error;
-
-      const author = authors[0];
+      const quotes = getQuotesByAuthorSlug(authorQuery);
+      if (quotes.length === 0) {
+        throw new Error("Author not found");
+      }
+      const author = quotes[0].author;
       entity = {
         name: author.name,
-        img: author.img,
+        img: author.img || entity.img,
         desc: "Collection of inspirational quotes by",
       };
     }
 
     if (companyQuery) {
-      const { data: companies, error } = await supabase
-        .from("company")
-        .select("*")
-        .eq("slug", companyQuery);
-
-      if (error || companies.length === 0) throw error;
-
-      const company = companies[0];
-      const hostname = new URL(company.url).hostname;
+      const quotes = getQuotesByCompanySlug(companyQuery);
+      if (quotes.length === 0) {
+        throw new Error("Company not found");
+      }
+      const company = quotes[0].author.company;
+      const hostname = company.url ? new URL(company.url).hostname : "";
       entity = {
         name: company.name,
-        img: `https://logo.clearbit.com/${hostname}`,
+        img: hostname ? `https://logo.clearbit.com/${hostname}` : entity.img,
         desc: "Inspirational quotes from entrepreneurs at",
       };
     }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
 import { ratelimit } from "@/lib/rate-limit";
+import { getQuoteById } from "@/lib/quotes-data";
 
 export const runtime = "edge";
 
@@ -24,20 +24,19 @@ export async function GET(
     }
 
     const id = (await params).id;
-    const { data, error } = await supabase
-      .from("quotes")
-      .select("*, author (*, company (*))")
-      .eq("id", id)
-      .single();
+    const quoteId = parseInt(id, 10);
 
-    if (error) {
-      if (error.code === "PGRST116") {
-        return NextResponse.json({ error: "Quote not found" }, { status: 404 });
-      }
-      throw error;
+    if (isNaN(quoteId)) {
+      return NextResponse.json({ error: "Invalid quote ID" }, { status: 400 });
     }
 
-    return NextResponse.json(data, {
+    const quote = getQuoteById(quoteId);
+
+    if (!quote) {
+      return NextResponse.json({ error: "Quote not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(quote, {
       headers: {
         "X-RateLimit-Limit": limit.toString(),
         "X-RateLimit-Remaining": remaining.toString(),

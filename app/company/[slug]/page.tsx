@@ -4,18 +4,14 @@ import Highlight from "@/components/ui/highlight";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
-import { supabase } from "@/lib/supabase";
+import { getQuotesByCompanySlug, getAllQuotes } from "@/lib/quotes-data";
 import { titleCase } from "@/lib/utils";
 import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
 
 // Generate static params for common companies
 export async function generateStaticParams() {
-  const { data: companies } = await supabase
-    .from("company")
-    .select("*")
-    .order("id");
-
-  const uniqueCompanies = [...new Set(companies?.map((q) => q.slug))];
+  const quotes = getAllQuotes();
+  const uniqueCompanies = [...new Set(quotes.map((q) => q.author.company.slug))];
   return uniqueCompanies.map((company) => ({
     slug: encodeURIComponent(company),
   }));
@@ -62,18 +58,17 @@ export default async function CompanyPage({
 }) {
   const company = decodeURIComponent((await params).slug);
 
-  const { data: quotes, error } = await supabase
-    .from("quotes")
-    .select(
-      `*,
-      author!inner(*, company!inner (*))`
-    )
-    .eq("author.company.slug", company)
-    .order("created_at", { ascending: false });
+  const quotes = getQuotesByCompanySlug(company);
 
-  if (error || !quotes.length) {
+  if (!quotes.length) {
     notFound();
   }
+
+  // Sort by created_at descending
+  quotes.sort(
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
 
   const processedCompany = titleCase(company);
 

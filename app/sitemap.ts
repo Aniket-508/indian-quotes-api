@@ -1,20 +1,12 @@
 import { MetadataRoute } from "next";
 import { BASE_URL, ROUTES } from "@/lib/routes";
-import { supabase } from "@/lib/supabase";
+import { getAllQuotes } from "@/lib/quotes-data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Get all authors and companies for dynamic routes
-  const { data: companies } = await supabase
-    .from("company")
-    .select("*")
-    .order("created_at", { ascending: false });
-  const { data: authors } = await supabase
-    .from("author")
-    .select("*")
-    .order("created_at", { ascending: false });
-
-  const uniqueAuthors = [...new Set(authors?.map((q) => q.slug) || [])];
-  const uniqueCompanies = [...new Set(companies?.map((q) => q.slug) || [])];
+  // Get all quotes to extract unique authors and companies
+  const quotes = getAllQuotes();
+  const uniqueAuthors = [...new Set(quotes.map((q) => q.author.slug))];
+  const uniqueCompanies = [...new Set(quotes.map((q) => q.author.company.slug))];
 
   // Base URLs
   const baseUrls = [

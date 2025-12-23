@@ -1,15 +1,15 @@
 ## Contributing quotes
 
 Thanks for contributing to **Indian Quotes API**!  
-This project is data‑driven: all quotes live in `quotes_seed.json` and are synced to Supabase via GitHub Actions.
+This project is data‑driven: all quotes live in `quotes_seed.json` and are served directly from the JSON file.
 
 ### 1. Workflow overview
 
 - **You edit**: `quotes_seed.json`.
 - **You open a PR** with your changes.
-- After the PR is merged, a **GitHub Action** runs and upserts your changes into the Supabase database.
+- After the PR is merged, your quotes will be immediately available in the API.
 
-You never need direct access to Supabase to add or update quotes.
+The API serves quotes directly from the JSON file, so there's no database sync needed.
 
 ### 2. JSON format
 
@@ -39,7 +39,7 @@ Each quote in `quotes_seed.json` looks like this:
 
 ### 3. Slugs and avoiding duplicates
 
-We use `slug` fields to uniquely identify authors and companies. The sync script upserts based on these slugs, so **reusing slugs correctly prevents duplicates**.
+We use `slug` fields to uniquely identify authors and companies. **Reusing slugs correctly prevents duplicates** and ensures consistency.
 
 - **Company slug** (`author.company.slug`)
 
@@ -86,8 +86,8 @@ We use `slug` fields to uniquely identify authors and companies. The sync script
 
 Once your PR is merged:
 
-- A GitHub Action will run `npm run sync:quotes` to upsert your entries into Supabase.
-- Your quotes should show up in the API/UI shortly after.
+- Your quotes will be immediately available in the API/UI (after the next deployment).
+- No additional sync or database update is needed.
 
 ### 6. Questions or corrections
 

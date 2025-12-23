@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
 import { ratelimit } from "@/lib/rate-limit";
+import { getRandomQuote } from "@/lib/quotes-data";
 
 export const runtime = "edge";
 
@@ -21,15 +21,9 @@ export async function GET(request: Request) {
       });
     }
 
-    const { data, error } = await supabase
-      .from("random_quotes")
-      .select("*, author (*, company (*))")
-      .limit(1)
-      .single();
+    const quote = getRandomQuote();
 
-    if (error) throw error;
-
-    return NextResponse.json(data, {
+    return NextResponse.json(quote, {
       headers: {
         "X-RateLimit-Limit": limit.toString(),
         "X-RateLimit-Remaining": remaining.toString(),

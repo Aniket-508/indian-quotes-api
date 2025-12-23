@@ -4,18 +4,14 @@ import Highlight from "@/components/ui/highlight";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
-import { supabase } from "@/lib/supabase";
+import { getQuotesByAuthorSlug, getAllQuotes } from "@/lib/quotes-data";
 import { titleCase } from "@/lib/utils";
 import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
-  const { data: authors } = await supabase
-    .from("author")
-    .select("*")
-    .order("id");
-
-  const uniqueAuthors = [...new Set(authors?.map((q) => q.slug))];
+  const quotes = getAllQuotes();
+  const uniqueAuthors = [...new Set(quotes.map((q) => q.author.slug))];
   return uniqueAuthors.map((author) => ({
     slug: encodeURIComponent(author),
   }));
@@ -62,16 +58,9 @@ export default async function AuthorPage({
 }) {
   const author = decodeURIComponent((await params).slug);
 
-  const { data: quotes, error } = await supabase
-    .from("quotes")
-    .select(
-      `*,
-      author!inner(*, company!inner (*))`
-    )
-    .eq("author.slug", author)
-    .order("created_at", { ascending: false });
+  const quotes = getQuotesByAuthorSlug(author);
 
-  if (error || !quotes.length) {
+  if (!quotes.length) {
     notFound();
   }
 

@@ -24,7 +24,7 @@ const data = [
   {
     name: "Narayan Murthy",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Narayana_Murthy_CIF_%28cropped%29.JPG/440px-Narayana_Murthy_CIF_%28cropped%29.JPG",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Narayana_Murthy_CIF_%28cropped%29.JPG/500px-Narayana_Murthy_CIF_%28cropped%29.JPG",
     slug: `narayan_murthy`,
   },
 ];

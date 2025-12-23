@@ -19,8 +19,6 @@ Each quote in `quotes_seed.json` looks like this:
 {
   "quote": "Clear, concise quote text from an Indian founder.",
   "tags": ["product", "early-stage"],
-  "source": "YouTube: https://www.youtube.com/watch?v=example",
-  "context": "Optional short context for where/why this was said.",
   "author": {
     "name": "Founder Name",
     "img": "",
@@ -36,7 +34,7 @@ Each quote in `quotes_seed.json` looks like this:
 ```
 
 - **Required**: `quote`, `author.name`, `author.slug`, `author.company.name`, `author.company.slug`.
-- **Optional**: `tags`, `source`, `context`, `author.img`, `author.url`, `author.company.url`.
+- **Optional**: `tags`, `author.img`, `author.url`, `author.company.url`.
 - `tags` should be a small list of lowercase strings, e.g. `["fundraising", "product", "hiring"]`.
 
 ### 3. Slugs and avoiding duplicates

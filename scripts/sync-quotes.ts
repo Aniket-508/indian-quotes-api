@@ -12,8 +12,6 @@ type SeedAuthor = Pick<Author, "name" | "img" | "url" | "slug"> & {
 type SeedQuote = {
   quote: string;
   tags?: string[];
-  source?: string;
-  context?: string;
   author: SeedAuthor;
 };
 
@@ -25,7 +23,7 @@ async function main() {
   console.log(`Syncing ${data.length} quotes to Supabase...`);
 
   for (const item of data) {
-    const { author, quote, tags = [], source, context } = item;
+    const { author, quote, tags = [] } = item;
 
     // Upsert company based on slug
     const { data: companyRow, error: companyError } = await supabase
@@ -82,8 +80,6 @@ async function main() {
       {
         quote,
         tags,
-        source: source ?? null,
-        context: context ?? null,
         author_id: authorRow.id,
       },
       {

@@ -6,7 +6,7 @@ const data = [
   {
     name: "Ratan Tata",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Ratan_Tata_2011_%28The_TCS_Story_Launch_-_CII%29_%28cropped%29.jpg/440px-Ratan_Tata_2011_%28The_TCS_Story_Launch_-_CII%29_%28cropped%29.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Shri_Ratan_Naval_Tata.jpg/500px-Shri_Ratan_Naval_Tata.jpg",
     slug: `ratan_tata`,
   },
   {

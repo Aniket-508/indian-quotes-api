@@ -42,7 +42,6 @@ Each quote in `quotes_seed.json` looks like this:
 We use `slug` fields to uniquely identify authors and companies. **Reusing slugs correctly prevents duplicates** and ensures consistency.
 
 - **Company slug** (`author.company.slug`)
-
   - Lowercase, kebab‑case.
   - Example: `"flipkart"`, `"zerodha"`, `"freshworks"`.
   - **If the company already exists in `quotes_seed.json`, you must reuse the existing `slug` and `name`.**

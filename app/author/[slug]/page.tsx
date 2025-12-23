@@ -1,12 +1,13 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
-import Highlight from "@/components/ui/highlight";
-import Navbar from "@/components/navbar";
+
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { getQuotesByAuthorSlug, getAllQuotes } from "@/lib/quotes-data";
-import { titleCase } from "@/lib/utils";
+import Highlight from "@/components/ui/highlight";
+import { getAllQuotes, getQuotesByAuthorSlug } from "@/lib/quotes-data";
 import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
+import { titleCase } from "@/lib/utils";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
@@ -67,15 +68,15 @@ export default async function AuthorPage({
   const processedAuthor = titleCase(author);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="flex min-h-screen flex-col bg-gray-50">
       <Navbar />
-      <div className="container mx-auto px-6 pt-24 pb-12 grow">
-        <div className="max-w-4xl mx-auto">
+      <div className="container mx-auto grow px-6 pb-12 pt-24">
+        <div className="mx-auto max-w-4xl">
           <div className="mb-8">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 font-bricolage">
+            <h1 className="mb-4 font-bricolage text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
               {processedAuthor}
             </h1>
-            <p className="text-base md:text-lg text-gray-600">
+            <p className="text-base text-gray-600 md:text-lg">
               Inspiring quotes and wisdom from{" "}
               <Highlight>{processedAuthor}</Highlight>
             </p>
@@ -85,12 +86,12 @@ export default async function AuthorPage({
             {quotes.map((quote) => (
               <div
                 key={quote.id}
-                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+                className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm"
               >
                 <div className="flex items-start gap-4">
-                  <Quote className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" />
+                  <Quote className="mt-1 h-6 w-6 flex-shrink-0 text-indigo-600" />
                   <div>
-                    <blockquote className="text-base md:text-xl text-gray-900 mb-4">
+                    <blockquote className="mb-4 text-base text-gray-900 md:text-xl">
                       &quot;{quote.quote}&quot;
                     </blockquote>
                     <footer>

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { ratelimit } from "@/lib/rate-limit";
+
 import { getQuoteById } from "@/lib/quotes-data";
+import { ratelimit } from "@/lib/rate-limit";
 
 export const runtime = "edge";
 

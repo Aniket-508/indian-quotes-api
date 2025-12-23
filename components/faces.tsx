@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+
 import { BASE_URL, ROUTES } from "@/lib/routes";
 
 const data = [
@@ -31,7 +32,7 @@ const data = [
 
 export default function Faces() {
   return (
-    <div className="flex flex-wrap items-center justify-center text-center gap-y-1 -space-x-1.5">
+    <div className="flex flex-wrap items-center justify-center gap-y-1 -space-x-1.5 text-center">
       {data.map(({ name, image, slug }) => (
         <Link key={name} href={`${BASE_URL}${ROUTES.AUTHOR}/${slug}`}>
           <Image
@@ -40,11 +41,11 @@ export default function Faces() {
             alt={name}
             width={32}
             height={32}
-            className="size-8 border-2 border-card rounded-full object-cover"
+            className="size-8 rounded-full border-2 border-card object-cover"
           />
         </Link>
       ))}
-      <p className="w-full text-gray-500 text-xs text-center">
+      <p className="w-full text-center text-xs text-gray-500">
         Featuring quotes from India&apos;s most influential business leaders
       </p>
     </div>

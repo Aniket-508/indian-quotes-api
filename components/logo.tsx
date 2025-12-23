@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Quote } from "lucide-react";
-import { cn } from "@/lib/utils";
+
 import { ROUTES } from "@/lib/routes";
+import { cn } from "@/lib/utils";
 
 export default function Logo({ className }: { className?: string }) {
   return (

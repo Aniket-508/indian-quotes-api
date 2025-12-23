@@ -1,22 +1,23 @@
-import Link from "next/link";
 import Image from "next/image";
-import Logo from "./logo";
+import Link from "next/link";
+
 import { ROUTES } from "@/lib/routes";
+import Logo from "./logo";
 
 export default function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-100">
+    <footer className="border-t border-gray-100 bg-white">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 py-12">
+        <div className="grid gap-12 py-12 md:grid-cols-4">
           <div>
             <Logo className="mb-6" />
-            <p className="text-gray-600 text-sm">
+            <p className="text-sm text-gray-600">
               Open-source API delivering wisdom from India&apos;s
               entrepreneurial leaders.
             </p>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">Documentation</h4>
+            <h4 className="mb-4 font-semibold text-gray-900">Documentation</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
                 <Link
@@ -34,7 +35,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 mb-4">More</h4>
+            <h4 className="mb-4 font-semibold text-gray-900">More</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
                 <Link
@@ -57,7 +58,7 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="flex items-center space-x-4 justify-between border-t border-gray-100 py-6 text-xs text-gray-600">
+        <div className="flex items-center justify-between space-x-4 border-t border-gray-100 py-6 text-xs text-gray-600">
           <Link
             href="https://aniket-pawar.vercel.app/"
             target="_blank"
@@ -68,7 +69,7 @@ export default function Footer() {
               alt="Aniket Pawar"
               width={16}
               height={16}
-              className="rounded-full mr-2 hidden sm:inline"
+              className="mr-2 hidden rounded-full sm:inline"
             />
             Made in 🇮🇳 by Aniket Pawar
           </Link>

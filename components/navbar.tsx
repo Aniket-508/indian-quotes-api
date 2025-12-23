@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
 import { Github, Menu, X } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
+
 import Logo from "@/components/logo";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -14,17 +15,17 @@ export default function Navbar() {
   const toggleSidebar = () => setOpenSidebar((prev) => !prev);
 
   return (
-    <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-      <div className="container mx-auto px-6 py-3 flex justify-between items-center">
+    <nav className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
+      <div className="container mx-auto flex items-center justify-between px-6 py-3">
         <div className="flex items-center">
           {openSidebar ? (
             <X
-              className="size-5 inline-block sm:hidden mr-2 cursor-pointer"
+              className="mr-2 inline-block size-5 cursor-pointer sm:hidden"
               onClick={toggleSidebar}
             />
           ) : (
             <Menu
-              className="size-5 inline-block sm:hidden mr-2 cursor-pointer"
+              className="mr-2 inline-block size-5 cursor-pointer sm:hidden"
               onClick={toggleSidebar}
             />
           )}
@@ -35,7 +36,7 @@ export default function Navbar() {
             <Github />
           </Link>
         </Button>
-        <div className="items-center space-x-4 hidden sm:flex">
+        <div className="hidden items-center space-x-4 sm:flex">
           <Link
             href={`${ROUTES.HOME}#${ROUTES.FEATURES}`}
             className={buttonVariants({ variant: "link" })}
@@ -66,7 +67,7 @@ export default function Navbar() {
       </div>
       <div
         className={cn(
-          "absolute top-full inset-x-0 h-[calc(100dvh-53px)] py-4 px-6 grid grid-cols-2 place-items-start place-content-start gap-x-4 gap-y-6 bg-white transition-opacity sm:hidden pointer-events-none opacity-0",
+          "pointer-events-none absolute inset-x-0 top-full grid h-[calc(100dvh-53px)] grid-cols-2 place-content-start place-items-start gap-x-4 gap-y-6 bg-white px-6 py-4 opacity-0 transition-opacity sm:hidden",
           openSidebar && "pointer-events-auto opacity-100"
         )}
       >

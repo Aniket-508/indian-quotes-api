@@ -2,22 +2,23 @@
 
 import { useState } from "react";
 import HTTPSnippet from "httpsnippet";
+import { Copy, Download } from "lucide-react";
 import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Copy, Download } from "lucide-react";
 import {
   Select,
-  SelectTrigger,
   SelectContent,
   SelectItem,
+  SelectTrigger,
 } from "@/components/ui/select";
 import { CodegenDefinitions } from "@/lib/code";
 import { API_BASE_URL } from "@/lib/routes";
@@ -105,7 +106,7 @@ export default function CodeGenModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="overflow-y-scroll max-h-screen">
+      <DialogContent className="max-h-screen overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>Generate Code</DialogTitle>
           <DialogDescription>
@@ -129,10 +130,10 @@ export default function CodeGenModal({
             ))}
           </SelectContent>
         </Select>
-        <div className="border border-gray-200 rounded-md">
-          <p className="text-gray-500 text-sm px-4 py-2">Generated code</p>
+        <div className="rounded-md border border-gray-200">
+          <p className="px-4 py-2 text-sm text-gray-500">Generated code</p>
           <div className="border-t border-gray-200 px-4 py-2">
-            <code className="text-xs font-semibold whitespace-pre-line">
+            <code className="whitespace-pre-line text-xs font-semibold">
               {code}
             </code>
           </div>

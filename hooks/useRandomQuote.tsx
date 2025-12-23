@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import type { Quote } from "@/types/quote";
+import { useCallback, useEffect, useState } from "react";
+
 import { API_ROUTES } from "@/lib/routes";
-import { Quote } from "@/types/quote";
 
 export function useRandomQuote() {
   const [quote, setQuote] = useState<Quote | null>(null);

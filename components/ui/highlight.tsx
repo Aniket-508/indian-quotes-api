@@ -9,7 +9,7 @@ const Highlight: React.FunctionComponent<HightlightProps> = ({
   return (
     <span
       className={cn(
-        "bg-indigo-50 py-0.5 px-1 rounded-sm text-indigo-600",
+        "rounded-sm bg-indigo-50 px-1 py-0.5 text-indigo-600",
         className
       )}
       {...attr}

@@ -1,5 +1,6 @@
+import type { Author, Company, Quote } from "@/types/quote";
+
 import quotesData from "../quotes_seed.json";
-import type { Quote, Author, Company } from "@/types/quote";
 
 // Transform seed data to match Quote type with IDs
 type SeedQuote = {
@@ -40,7 +41,7 @@ function buildIndexes() {
   const byAuthorSlug = new Map<string, QuoteWithId[]>();
   const byCompanySlug = new Map<string, QuoteWithId[]>();
   const byTag = new Map<string, QuoteWithId[]>();
-  
+
   // Track unique companies and authors to ensure consistent IDs
   const companyMap = new Map<string, Company>();
   const authorMap = new Map<string, { author: Author; companyId: number }>();
@@ -131,7 +132,7 @@ export function getAllQuotes(filters?: {
   company?: string;
   tags?: string;
 }): QuoteWithId[] {
-  const { quotes, indexes } = buildIndexes();
+  const { quotes } = buildIndexes();
   let result = quotes;
 
   // Apply filters (case-insensitive partial match)
@@ -188,7 +189,8 @@ export function paginateQuotes(
   limit: number
 ) {
   const sorted = [...quotes].sort(
-    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   );
   const from = (page - 1) * limit;
   const to = from + limit;
@@ -200,4 +202,3 @@ export function paginateQuotes(
     totalPages: Math.ceil(sorted.length / limit),
   };
 }
-

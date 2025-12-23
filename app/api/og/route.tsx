@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
+import { ImageResponse } from "@vercel/og";
+import { z } from "zod";
+
 import {
   getQuotesByAuthorSlug,
   getQuotesByCompanySlug,
 } from "@/lib/quotes-data";
-import { ImageResponse } from "@vercel/og";
-import { z } from "zod";
 
 interface EntityProfile {
   name: string;
@@ -69,95 +70,93 @@ export async function GET(request: Request) {
     }
 
     return new ImageResponse(
-      (
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          backgroundColor: "#000",
+          padding: "2rem",
+          backgroundImage:
+            "linear-gradient(to right, #111827 1px, transparent 1px),linear-gradient(to bottom, #111827 1px, transparent 1px)",
+          backgroundSize: "8px 8px",
+          color: "#fff",
+          fontFamily: "Geist",
+        }}
+      >
         <div
           style={{
-            height: "100%",
-            width: "100%",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4f46e5"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
+            <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
+          </svg>
+          <div
+            style={{
+              marginLeft: "0.5rem",
+              fontSize: "1.5rem",
+              fontWeight: "600",
+            }}
+          >
+            Indian Quotes API
+          </div>
+        </div>
+        <div
+          style={{
             display: "flex",
             flexDirection: "column",
-            backgroundColor: "#000",
-            padding: "2rem",
-            backgroundImage:
-              "linear-gradient(to right, #111827 1px, transparent 1px),linear-gradient(to bottom, #111827 1px, transparent 1px)",
-            backgroundSize: "8px 8px",
-            color: "#fff",
-            fontFamily: "Geist",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%",
           }}
         >
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#4f46e5"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
-              <path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z" />
-            </svg>
-            <div
-              style={{
-                marginLeft: "0.5rem",
-                fontSize: "1.5rem",
-                fontWeight: "600",
-              }}
-            >
-              Indian Quotes API
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
-              height: "100%",
             }}
           >
+            <div style={{ fontSize: "2.5rem", fontWeight: "500" }}>
+              {entity.desc}
+            </div>
             <div
               style={{
                 display: "flex",
-                flexDirection: "column",
                 alignItems: "center",
+                justifyContent: "center",
+                marginTop: "1rem",
+                gap: "1rem",
               }}
             >
-              <div style={{ fontSize: "2.5rem", fontWeight: "500" }}>
-                {entity.desc}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "1rem",
-                  gap: "1rem",
-                }}
-              >
-                <img
-                  src={entity.img}
-                  alt={entity.name + " photo"}
-                  width={80}
-                  height={80}
-                  style={{ borderRadius: "100%" }}
-                />
-                <div style={{ fontSize: "5rem", fontWeight: "600" }}>
-                  {entity.name}
-                </div>
+              <img
+                src={entity.img}
+                alt={entity.name + " photo"}
+                width={80}
+                height={80}
+                style={{ borderRadius: "100%" }}
+              />
+              <div style={{ fontSize: "5rem", fontWeight: "600" }}>
+                {entity.name}
               </div>
             </div>
           </div>
         </div>
-      ),
+      </div>,
       {
         width: 1200,
         height: 630,

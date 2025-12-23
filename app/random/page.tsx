@@ -1,5 +1,5 @@
-import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import RandomQuote from "@/components/randomquote";
 import { RANDOM_QUOTE_METADATA } from "@/lib/meta";
 
@@ -24,14 +24,14 @@ export default function RandomPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gray-50 pt-24 pb-12">
+      <div className="min-h-screen bg-gray-50 pb-12 pt-24">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
+          <div className="mx-auto max-w-4xl">
             <div className="mb-12 text-center">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
                 Random Quote
               </h1>
-              <p className="text-base md:text-lg text-gray-600">
+              <p className="text-base text-gray-600 md:text-lg">
                 Get inspired with wisdom from India&apos;s most successful
                 entrepreneurs
               </p>

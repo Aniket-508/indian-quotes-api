@@ -1,12 +1,15 @@
-import { MetadataRoute } from "next";
-import { BASE_URL, ROUTES } from "@/lib/routes";
+import type { MetadataRoute } from "next";
+
 import { getAllQuotes } from "@/lib/quotes-data";
+import { BASE_URL, ROUTES } from "@/lib/routes";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all quotes to extract unique authors and companies
   const quotes = getAllQuotes();
   const uniqueAuthors = [...new Set(quotes.map((q) => q.author.slug))];
-  const uniqueCompanies = [...new Set(quotes.map((q) => q.author.company.slug))];
+  const uniqueCompanies = [
+    ...new Set(quotes.map((q) => q.author.company.slug)),
+  ];
 
   // Base URLs
   const baseUrls = [

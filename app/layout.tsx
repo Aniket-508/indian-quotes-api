@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import { Bricolage_Grotesque } from "next/font/google";
+import localFont from "next/font/local";
+
 import { Toaster } from "@/components/ui/sonner";
 import { MAIN_METADATA } from "@/lib/meta";
+
 import "./globals.css";
 
 const geistSans = localFont({

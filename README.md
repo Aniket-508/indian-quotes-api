@@ -58,9 +58,12 @@ There is a rate limit of **100 requests per minute**, per IP address. If you exc
 
 ## Contribution
 
-Contributions are welcome! If you have suggestions or would like to add more quotes, feel free to submit a pull request.
+Contributions are welcome! If you have suggestions, want to add more quotes, or improve the API/website, feel free to submit a pull request.
 
-### Steps to Contribute
+- **Adding or editing quotes**: see **[CONTRIBUTING.md](./CONTRIBUTING.md)** for the JSON format and the exact workflow using `quotes_seed.json`.
+- **Code or docs changes**: open a PR as usual (bugfixes, features, styling, etc.).
+
+### Steps to Contribute (general)
 
 1. Fork the repository.
 2. Create a new branch:

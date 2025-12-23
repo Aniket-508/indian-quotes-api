@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { supabase } from "../lib/supabase";
-import type { Author, Company } from "../types/quote";
+import { supabase } from "@/lib/supabase";
+import type { Author, Company } from "@/types/quote";
 
 type SeedCompany = Pick<Company, "name" | "url" | "slug">;
 
@@ -75,17 +75,12 @@ async function main() {
       continue;
     }
 
-    // Upsert quote based on quote text + author_id
-    const { error: quoteError } = await supabase.from("quotes").upsert(
-      {
-        quote,
-        tags,
-        author_id: authorRow.id,
-      },
-      {
-        onConflict: "quote,author_id",
-      }
-    );
+    // Upsert quote
+    const { error: quoteError } = await supabase.from("quotes").upsert({
+      quote,
+      tags,
+      author_id: authorRow.id,
+    });
 
     if (quoteError) {
       console.error(

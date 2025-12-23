@@ -1,6 +1,6 @@
 import type { Author, Company, Quote } from "@/types/quote";
 
-import quotesData from "../quotes_seed.json";
+import quotesData from "../quotes.json";
 
 // Transform seed data to match Quote type with IDs
 type SeedQuote = {

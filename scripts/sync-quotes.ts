@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { supabase } from "@/lib/supabase";
-import type { Author, Company } from "@/types/quote";
+import { supabase } from "../lib/supabase";
+import type { Author, Company } from "../types/quote";
 
 type SeedCompany = Pick<Company, "name" | "url" | "slug">;
 

@@ -1,0 +1,312 @@
+[
+  {
+    "name": "Amul",
+    "url": "https://amul.com/",
+    "slug": "amul"
+  },
+  {
+    "name": "Antarmanh Consulting",
+    "url": "https://antarmanh.com/",
+    "slug": "antarmanh"
+  },
+  {
+    "name": "BharatPe",
+    "url": "https://bharatpe.com/",
+    "slug": "bharatpe"
+  },
+  {
+    "name": "Bigsmall",
+    "url": "https://www.bigsmall.in/",
+    "slug": "bigsmall"
+  },
+  {
+    "name": "Biocon",
+    "url": "https://www.biocon.com/",
+    "slug": "biocon"
+  },
+  {
+    "name": "CarDekho",
+    "url": "https://www.cardekho.com",
+    "slug": "cardekho"
+  },
+  {
+    "name": "Crackverbal",
+    "url": "https://www.crackverbal.com/",
+    "slug": "crackverbal"
+  },
+  {
+    "name": "Cred",
+    "url": "https://cred.club/",
+    "slug": "cred"
+  },
+  {
+    "name": "Emcure Pharmaceuticals",
+    "url": "https://www.emcure.com/",
+    "slug": "emcure"
+  },
+  {
+    "name": "Engineer Babu",
+    "url": "https://engineerbabu.com/",
+    "slug": "engineerbabu"
+  },
+  {
+    "name": "Finway",
+    "url": "https://finway.in/",
+    "slug": "finway"
+  },
+  {
+    "name": "Flipkart",
+    "url": "https://www.flipkart.com/",
+    "slug": "flipkart"
+  },
+  {
+    "name": "Freshworks",
+    "url": "https://www.freshworks.com/",
+    "slug": "freshworks"
+  },
+  {
+    "name": "GemStoneUniverse",
+    "url": "https://www.gemstoneuniverse.com/",
+    "slug": "gemstoneuniverse"
+  },
+  {
+    "name": "The Good Glamm Group",
+    "url": "https://goodglamm.com/",
+    "slug": "goodglamm"
+  },
+  {
+    "name": "GoodWorkLabs",
+    "url": "https://www.goodworklabs.com/",
+    "slug": "goodworklabs"
+  },
+  {
+    "name": "HDFC Bank",
+    "url": "https://www.hdfcbank.com/",
+    "slug": "hdfcbank"
+  },
+  {
+    "name": "Hindsight Ventures",
+    "url": "https://hindsightventures.co/",
+    "slug": "hindsightventures"
+  },
+  {
+    "name": "Housing",
+    "url": "https://housing.com/",
+    "slug": "housing"
+  },
+  {
+    "name": "I Brands Beverages",
+    "url": "https://www.ibrandsplc.com/",
+    "slug": "ibrandsplc"
+  },
+  {
+    "name": "ICICI Bank",
+    "url": "https://www.icicibank.com/",
+    "slug": "icicibank"
+  },
+  {
+    "name": "Info Edge",
+    "url": "https://www.infoedge.in/",
+    "slug": "infoedge"
+  },
+  {
+    "name": "Infosys",
+    "url": "https://www.infosys.com/",
+    "slug": "infosys"
+  },
+  {
+    "name": "InMobi",
+    "url": "https://www.inmobi.com/",
+    "slug": "inmobi"
+  },
+  {
+    "name": "Isha Foundation",
+    "url": "https://isha.sadhguru.org/in/en",
+    "slug": "isha_foundation"
+  },
+  {
+    "name": "JetSetGo",
+    "url": "https://jetsetgo.in/",
+    "slug": "jetsetgo"
+  },
+  {
+    "name": "Kalaari Capital",
+    "url": "https://kalaari.com/",
+    "slug": "kalaari"
+  },
+  {
+    "name": "Lenskart",
+    "url": "https://www.lenskart.com/",
+    "slug": "lenskart"
+  },
+  {
+    "name": "Limeroad",
+    "url": "https://www.limeroad.com/",
+    "slug": "limeroad"
+  },
+  {
+    "name": "Mahindra & Mahindra",
+    "url": "https://www.mahindra.com/",
+    "slug": "mahindra"
+  },
+  {
+    "name": "MakeMyTrip",
+    "url": "https://www.makemytrip.com/",
+    "slug": "makemytrip"
+  },
+  {
+    "name": "Marico",
+    "url": "https://marico.com/",
+    "slug": "marico"
+  },
+  {
+    "name": "Metropolis Healthcare",
+    "url": "https://www.metropolisindia.com/",
+    "slug": "metropolisindia"
+  },
+  {
+    "name": "Mobikwik",
+    "url": "https://www.mobikwik.com/",
+    "slug": "mobikwik"
+  },
+  {
+    "name": "Nearbuy",
+    "url": "https://www.nearbuy.com/",
+    "slug": "nearybuy"
+  },
+  {
+    "name": "NICEorg",
+    "url": "https://niceorg.in/",
+    "slug": "niceorg"
+  },
+  {
+    "name": "Ola",
+    "url": "https://www.olacabs.com/",
+    "slug": "ola"
+  },
+  {
+    "name": "OYO",
+    "url": "https://www.oyorooms.com/",
+    "slug": "oyo"
+  },
+  {
+    "name": "Paytm",
+    "url": "https://paytm.com/",
+    "slug": "paytm"
+  },
+  {
+    "name": "Pepperfry",
+    "url": "https://www.pepperfry.com/",
+    "slug": "pepperfry"
+  },
+  {
+    "name": "Pinklay",
+    "url": "https://www.pinklay.com/",
+    "slug": "pinklay"
+  },
+  {
+    "name": "Practo",
+    "url": "https://www.practo.com/",
+    "slug": "practo"
+  },
+  {
+    "name": "Reliance",
+    "url": "https://www.ril.com/",
+    "slug": "reliance"
+  },
+  {
+    "name": "RxDx Healthcare",
+    "url": "https://rxdx.in/",
+    "slug": "rxdx"
+  },
+  {
+    "name": "Shaadi.com",
+    "url": "https://www.shaadi.com/",
+    "slug": "shaadi"
+  },
+  {
+    "name": "Sheroes",
+    "url": "https://sheroes.com/",
+    "slug": "sheroes"
+  },
+  {
+    "name": "Shopclues",
+    "url": "https://www.shopclues.com/",
+    "slug": "shopclues"
+  },
+  {
+    "name": "Snapdeal",
+    "url": "https://www.snapdeal.com/",
+    "slug": "snapdeal"
+  },
+  {
+    "name": "Sportz Village",
+    "url": "https://edusports.sportzvillage.com/",
+    "slug": "sportzvillage"
+  },
+  {
+    "name": "SUGAR Cosmetics",
+    "url": "https://in.sugarcosmetics.com/",
+    "slug": "sugarcosmetics"
+  },
+  {
+    "name": "Tata Group",
+    "url": "https://www.tata.com/",
+    "slug": "tata"
+  },
+  {
+    "name": "Technopak",
+    "url": "https://www.technopak.com/",
+    "slug": "technopak"
+  },
+  {
+    "name": "Tracxn",
+    "url": "https://tracxn.com/",
+    "slug": "tracxn"
+  },
+  {
+    "name": "upGrad",
+    "url": "https://www.upgrad.com/",
+    "slug": "upgrad"
+  },
+  {
+    "name": "Wakefit",
+    "url": "https://www.wakefit.co/",
+    "slug": "wakefit"
+  },
+  {
+    "name": "Wipro",
+    "url": "https://www.wipro.com/",
+    "slug": "wipro"
+  },
+  {
+    "name": "With you",
+    "url": "https://alwayswithyou.co.in/",
+    "slug": "with_you"
+  },
+  {
+    "name": "YourStory",
+    "url": "https://yourstory.com/",
+    "slug": "yourstory"
+  },
+  {
+    "name": "Zerodha",
+    "url": "https://zerodha.com/",
+    "slug": "zerodha"
+  },
+  {
+    "name": "Zivame",
+    "url": "https://www.zivame.com/",
+    "slug": "zivame"
+  },
+  {
+    "name": "Zoho",
+    "url": "https://www.zoho.com/",
+    "slug": "zoho"
+  },
+  {
+    "name": "Zomato",
+    "url": "https://www.zomato.com/",
+    "slug": "zomato"
+  }
+]

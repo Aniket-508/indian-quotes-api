@@ -1,22 +1,28 @@
 import type { Author, Company, Quote } from "@/types/quote";
 
-import quotesData from "../quotes.json";
+import authorsData from "../data/authors.json";
+import companiesData from "../data/companies.json";
+import quotesData from "../data/quotes.json";
 
-// Transform seed data to match Quote type with IDs
+// Seed data types
+type SeedCompany = {
+  name: string;
+  url?: string;
+  slug: string;
+};
+
+type SeedAuthor = {
+  name: string;
+  img?: string;
+  url?: string;
+  slug: string;
+  companySlug: string;
+};
+
 type SeedQuote = {
   quote: string;
   tags?: string[];
-  author: {
-    name: string;
-    img?: string;
-    url?: string;
-    slug: string;
-    company: {
-      name: string;
-      url?: string;
-      slug: string;
-    };
-  };
+  authorSlug: string;
 };
 
 type QuoteWithId = Quote & {
@@ -42,51 +48,60 @@ function buildIndexes() {
   const byCompanySlug = new Map<string, QuoteWithId[]>();
   const byTag = new Map<string, QuoteWithId[]>();
 
-  // Track unique companies and authors to ensure consistent IDs
+  // Build company map from companies.json
   const companyMap = new Map<string, Company>();
-  const authorMap = new Map<string, { author: Author; companyId: number }>();
   let companyIdCounter = 1;
-  let authorIdCounter = 1;
   const now = new Date().toISOString();
 
+  (companiesData as SeedCompany[]).forEach((seedCompany) => {
+    const company: Company = {
+      id: companyIdCounter++,
+      name: seedCompany.name,
+      url: seedCompany.url || "",
+      slug: seedCompany.slug,
+      created_at: now,
+    };
+    companyMap.set(company.slug, company);
+  });
+
+  // Build author map from authors.json (resolving company references)
+  const authorMap = new Map<string, Author>();
+  let authorIdCounter = 1;
+
+  (authorsData as SeedAuthor[]).forEach((seedAuthor) => {
+    const company = companyMap.get(seedAuthor.companySlug);
+    if (!company) {
+      console.warn(
+        `Author ${seedAuthor.slug} references unknown company ${seedAuthor.companySlug}`
+      );
+      return;
+    }
+
+    const author: Author = {
+      id: authorIdCounter++,
+      name: seedAuthor.name,
+      img: seedAuthor.img || "",
+      url: seedAuthor.url || "",
+      slug: seedAuthor.slug,
+      company,
+      company_id: company.id,
+      created_at: now,
+    };
+    authorMap.set(author.slug, author);
+  });
+
+  // Build quotes from quotes.json (resolving author references)
   (quotesData as SeedQuote[]).forEach((seedQuote, index) => {
     const quoteId = index + 1;
+    const author = authorMap.get(seedQuote.authorSlug);
 
-    // Get or create company
-    let company: Company;
-    if (companyMap.has(seedQuote.author.company.slug)) {
-      company = companyMap.get(seedQuote.author.company.slug)!;
-    } else {
-      company = {
-        id: companyIdCounter++,
-        name: seedQuote.author.company.name,
-        url: seedQuote.author.company.url || "",
-        slug: seedQuote.author.company.slug,
-        created_at: now,
-      };
-      companyMap.set(company.slug, company);
+    if (!author) {
+      console.warn(
+        `Quote ${quoteId} references unknown author ${seedQuote.authorSlug}`
+      );
+      return;
     }
 
-    // Get or create author
-    let author: Author;
-    if (authorMap.has(seedQuote.author.slug)) {
-      const cached = authorMap.get(seedQuote.author.slug)!;
-      author = { ...cached.author, company }; // Update company reference
-    } else {
-      author = {
-        id: authorIdCounter++,
-        name: seedQuote.author.name,
-        img: seedQuote.author.img || "",
-        url: seedQuote.author.url || "",
-        slug: seedQuote.author.slug,
-        company,
-        company_id: company.id,
-        created_at: now,
-      };
-      authorMap.set(author.slug, { author, companyId: company.id });
-    }
-
-    // Build quote object
     const quote: QuoteWithId = {
       id: quoteId,
       quote: seedQuote.quote,
@@ -106,10 +121,10 @@ function buildIndexes() {
     byAuthorSlug.get(author.slug)!.push(quote);
 
     // Index by company slug
-    if (!byCompanySlug.has(company.slug)) {
-      byCompanySlug.set(company.slug, []);
+    if (!byCompanySlug.has(author.company.slug)) {
+      byCompanySlug.set(author.company.slug, []);
     }
-    byCompanySlug.get(company.slug)!.push(quote);
+    byCompanySlug.get(author.company.slug)!.push(quote);
 
     // Index by tags
     quote.tags.forEach((tag) => {

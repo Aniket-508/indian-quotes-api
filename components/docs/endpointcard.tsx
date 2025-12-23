@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import { CodeXml } from "lucide-react";
-import { Button } from "../ui/button";
+
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 import CodeBlock from "../ui/codeblock";
-import FieldList from "./fieldlist";
 import CodeGenModal from "./codegenmodal";
+import FieldList from "./fieldlist";
 
 export default function EndpointCard({
   method,
@@ -28,13 +29,13 @@ export default function EndpointCard({
   const [isModalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-200">
-      <div className="flex items-center justify-between mb-4">
+    <div className="rounded-xl border border-gray-200 bg-white p-6">
+      <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Badge size="lg" className="bg-green-100 text-green-700">
             {method}
           </Badge>
-          <code className="text-sm sm:text-base md:text-lg text-gray-900">
+          <code className="text-sm text-gray-900 sm:text-base md:text-lg">
             {route}
           </code>
         </div>
@@ -55,11 +56,11 @@ export default function EndpointCard({
           Code
         </Button>
       </div>
-      <p className="text-gray-600 mb-4">{description}</p>
+      <p className="mb-4 text-gray-600">{description}</p>
 
       {queryParams && (
         <div className="mb-4">
-          <h4 className="font-semibold text-gray-900 mb-2">Query Parameters</h4>
+          <h4 className="mb-2 font-semibold text-gray-900">Query Parameters</h4>
           <FieldList fields={queryParams} />
         </div>
       )}

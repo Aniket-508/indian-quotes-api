@@ -1,4 +1,5 @@
-import { Database, Globe, Lock, BookOpen, LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { BookOpen, Database, Globe, Lock } from "lucide-react";
 
 const featureItems = [
   {
@@ -67,11 +68,11 @@ const FeatureItem = ({
 }: FeatureItemProps) => {
   return (
     <div
-      className={`relative group/features ${sizes[size]} bg-white p-6 rounded-xl border border-gray-100 overflow-hidden hover:border-transparent hover:shadow-xl transition-all duration-500`}
+      className={`group/features relative ${sizes[size]} overflow-hidden rounded-xl border border-gray-100 bg-white p-6 transition-all duration-500 hover:border-transparent hover:shadow-xl`}
     >
-      <div className="group-hover/features:translate-x-2 transition duration-200">
+      <div className="transition duration-200 group-hover/features:translate-x-2">
         <Icon className={`${iconSizes[size]} ${iconColor} mb-3`} />
-        <h3 className={`${titleSizes[size]} font-bold text-gray-900 mb-2`}>
+        <h3 className={`${titleSizes[size]} mb-2 font-bold text-gray-900`}>
           {title}
         </h3>
         {description && <p className="text-gray-600">{description}</p>}
@@ -82,8 +83,8 @@ const FeatureItem = ({
 
 export default function Features() {
   return (
-    <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+    <div className="mx-auto max-w-6xl">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         {featureItems.map((item) => (
           <FeatureItem key={item.title} {...item} />
         ))}

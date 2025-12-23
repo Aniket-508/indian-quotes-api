@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
-import { ratelimit } from "@/lib/rate-limit";
 import { z } from "zod";
+
+import { getAllQuotes, paginateQuotes } from "@/lib/quotes-data";
+import { ratelimit } from "@/lib/rate-limit";
 
 export const runtime = "edge";
 
@@ -59,58 +60,35 @@ export async function GET(request: Request) {
       tags,
     } = validationResult.data;
 
-    let quotesQuery = supabase.from("quotes").select(
-      `*,
-        author!inner(*, company!inner (*))`,
-      { count: "exact" }
-    );
+    // Get filtered quotes
+    const filteredQuotes = getAllQuotes({ author, company, tags });
 
-    // Apply filters if provided
-    if (author) quotesQuery = quotesQuery.ilike("author.name", `%${author}%`);
-    if (company)
-      quotesQuery = quotesQuery.ilike("author.company.name", `%${company}%`);
-    if (tags) quotesQuery = quotesQuery.contains("tags", [tags]);
-
-    // First get the total count
-    const { count, error: countError } = await quotesQuery;
-
-    if (countError) throw countError;
-
-    const totalPages = Math.ceil((count ?? 0) / pageLimit);
+    // Paginate
+    const paginated = paginateQuotes(filteredQuotes, page, pageLimit);
 
     // Check if requested page exists
-    if (page > totalPages) {
+    if (page > paginated.totalPages && paginated.totalPages > 0) {
       return NextResponse.json(
         {
           error: "Page not found",
           details: {
             currentPage: page,
-            totalPages,
-            totalItems: count,
+            totalPages: paginated.totalPages,
+            totalItems: paginated.total,
           },
         },
         { status: 404 }
       );
     }
 
-    // Apply pagination
-    const from = (page - 1) * pageLimit;
-    const to = from + pageLimit - 1;
-
-    const { data, error } = await quotesQuery
-      .range(from, to)
-      .order("created_at", { ascending: false });
-
-    if (error) throw error;
-
     return NextResponse.json(
       {
-        data,
+        data: paginated.data,
         pagination: {
-          page,
-          pageSize: pageLimit,
-          totalPages,
-          totalItems: count,
+          page: paginated.page,
+          pageSize: paginated.pageSize,
+          totalPages: paginated.totalPages,
+          totalItems: paginated.total,
         },
       },
       {

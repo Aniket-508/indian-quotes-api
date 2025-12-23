@@ -1,19 +1,19 @@
 ## Contributing quotes
 
 Thanks for contributing to **Indian Quotes API**!  
-This project is data‑driven: all quotes live in `quotes_seed.json` and are synced to Supabase via GitHub Actions.
+This project is data‑driven: all quotes live in `quotes.json` and are served directly from the JSON file.
 
 ### 1. Workflow overview
 
-- **You edit**: `quotes_seed.json`.
+- **You edit**: `quotes.json`.
 - **You open a PR** with your changes.
-- After the PR is merged, a **GitHub Action** runs and upserts your changes into the Supabase database.
+- After the PR is merged, your quotes will be immediately available in the API.
 
-You never need direct access to Supabase to add or update quotes.
+The API serves quotes directly from the JSON file, so there's no database sync needed.
 
 ### 2. JSON format
 
-Each quote in `quotes_seed.json` looks like this:
+Each quote in `quotes.json` looks like this:
 
 ```json
 {
@@ -39,13 +39,12 @@ Each quote in `quotes_seed.json` looks like this:
 
 ### 3. Slugs and avoiding duplicates
 
-We use `slug` fields to uniquely identify authors and companies. The sync script upserts based on these slugs, so **reusing slugs correctly prevents duplicates**.
+We use `slug` fields to uniquely identify authors and companies. **Reusing slugs correctly prevents duplicates** and ensures consistency.
 
 - **Company slug** (`author.company.slug`)
-
   - Lowercase, kebab‑case.
   - Example: `"flipkart"`, `"zerodha"`, `"freshworks"`.
-  - **If the company already exists in `quotes_seed.json`, you must reuse the existing `slug` and `name`.**
+  - **If the company already exists in `quotes.json`, you must reuse the existing `slug` and `name`.**
 
 - **Author slug** (`author.slug`)
   - Lowercase, kebab‑case of the full name.
@@ -54,7 +53,7 @@ We use `slug` fields to uniquely identify authors and companies. The sync script
 
 #### How to check if an author or company exists
 
-- Search inside `quotes_seed.json` for the **company name** or **author name**.
+- Search inside `quotes.json` for the **company name** or **author name**.
 - If you find an entry:
   - Copy the existing `company.slug` and `author.slug`.
   - Keep the `name` field identical (don’t change spelling/casing for an existing slug).
@@ -73,7 +72,7 @@ We use `slug` fields to uniquely identify authors and companies. The sync script
 ### 5. How to submit a PR
 
 1. **Fork** this repository and create a new branch.
-2. Add one or more quote objects to `quotes_seed.json` (keep it valid JSON).
+2. Add one or more quote objects to `quotes.json` (keep it valid JSON).
 3. (Optional but recommended) Run:
 
    ```bash
@@ -86,14 +85,14 @@ We use `slug` fields to uniquely identify authors and companies. The sync script
 
 Once your PR is merged:
 
-- A GitHub Action will run `npm run sync:quotes` to upsert your entries into Supabase.
-- Your quotes should show up in the API/UI shortly after.
+- Your quotes will be immediately available in the API/UI (after the next deployment).
+- No additional sync or database update is needed.
 
 ### 6. Questions or corrections
 
 If you notice a misattributed quote, incorrect slug, or other issue:
 
 - Open an issue describing the problem, or
-- Submit a PR fixing the relevant object in `quotes_seed.json`.
+- Submit a PR fixing the relevant object in `quotes.json`.
 
 Thank you for helping build a high‑quality library of Indian founder wisdom! 🙏

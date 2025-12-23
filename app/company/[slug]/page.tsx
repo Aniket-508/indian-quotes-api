@@ -1,21 +1,20 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
-import Highlight from "@/components/ui/highlight";
-import Navbar from "@/components/navbar";
+
 import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
-import { supabase } from "@/lib/supabase";
-import { titleCase } from "@/lib/utils";
+import Highlight from "@/components/ui/highlight";
+import { getAllQuotes, getQuotesByCompanySlug } from "@/lib/quotes-data";
 import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
+import { titleCase } from "@/lib/utils";
 
 // Generate static params for common companies
 export async function generateStaticParams() {
-  const { data: companies } = await supabase
-    .from("company")
-    .select("*")
-    .order("id");
-
-  const uniqueCompanies = [...new Set(companies?.map((q) => q.slug))];
+  const quotes = getAllQuotes();
+  const uniqueCompanies = [
+    ...new Set(quotes.map((q) => q.author.company.slug)),
+  ];
   return uniqueCompanies.map((company) => ({
     slug: encodeURIComponent(company),
   }));
@@ -62,31 +61,30 @@ export default async function CompanyPage({
 }) {
   const company = decodeURIComponent((await params).slug);
 
-  const { data: quotes, error } = await supabase
-    .from("quotes")
-    .select(
-      `*,
-      author!inner(*, company!inner (*))`
-    )
-    .eq("author.company.slug", company)
-    .order("created_at", { ascending: false });
+  const quotes = getQuotesByCompanySlug(company);
 
-  if (error || !quotes.length) {
+  if (!quotes.length) {
     notFound();
   }
+
+  // Sort by created_at descending
+  quotes.sort(
+    (a, b) =>
+      new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
 
   const processedCompany = titleCase(company);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="flex min-h-screen flex-col bg-gray-50">
       <Navbar />
-      <div className="container mx-auto px-6 pt-24 pb-12 grow">
-        <div className="max-w-4xl mx-auto">
+      <div className="container mx-auto grow px-6 pb-12 pt-24">
+        <div className="mx-auto max-w-4xl">
           <div className="mb-12">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 capitalize font-bricolage">
+            <h1 className="mb-4 font-bricolage text-2xl font-bold capitalize text-gray-900 sm:text-3xl md:text-4xl">
               {processedCompany}
             </h1>
-            <p className="text-base md:text-lg text-gray-600">
+            <p className="text-base text-gray-600 md:text-lg">
               Discover inspiring quotes from entrepreneurs at{" "}
               <Highlight>{processedCompany}</Highlight>
             </p>
@@ -96,12 +94,12 @@ export default async function CompanyPage({
             {quotes.map((quote) => (
               <div
                 key={quote.id}
-                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
+                className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm"
               >
                 <div className="flex items-start gap-4">
-                  <Quote className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" />
+                  <Quote className="mt-1 h-6 w-6 flex-shrink-0 text-indigo-600" />
                   <div>
-                    <blockquote className="text-lg sm:text-xl text-gray-900 mb-4">
+                    <blockquote className="mb-4 text-lg text-gray-900 sm:text-xl">
                       &quot;{quote.quote}&quot;
                     </blockquote>
                     <footer>

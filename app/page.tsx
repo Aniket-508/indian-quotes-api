@@ -1,24 +1,25 @@
 import React from "react";
-import Link from "next/link";
 import Image from "next/image";
-import Navbar from "@/components/navbar";
+import Link from "next/link";
+
 import CodePreview from "@/components/codepreview";
-import { Button } from "@/components/ui/button";
-import Footer from "@/components/footer";
-import Features from "@/components/features";
-import Highlight from "@/components/ui/highlight";
 import Faces from "@/components/faces";
+import Features from "@/components/features";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import { Button } from "@/components/ui/button";
+import Highlight from "@/components/ui/highlight";
 import { ROUTES } from "@/lib/routes";
 import PeerlistWinner from "@/public/peerlist-winner.svg";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50 font-geist-sans">
+    <div className="font-geist-sans min-h-screen bg-gray-50">
       <Navbar />
 
       {/* Hero Section */}
       <main className="container mx-auto px-6 pt-24">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="mx-auto max-w-4xl text-center">
           {/* Notice Section */}
           {/* <div className="inline-flex items-center bg-indigo-50 px-2.5 py-1.5 gap-1.5 rounded-full text-indigo-600 font-medium text-xs/tight mb-6">
             <span className="relative flex h-2 w-2">
@@ -31,20 +32,20 @@ export default function Home() {
           <Link
             href={ROUTES.PEERLIST_PROJECT}
             target="_blank"
-            className="inline-flex justify-center mb-6"
+            className="mb-6 inline-flex justify-center"
           >
             <Image src={PeerlistWinner} alt="Peerlist Launch" />
           </Link>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight font-bricolage">
+          <h1 className="mb-6 font-bricolage text-3xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl">
             Inspire Your Next
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               {" "}
               Big Idea{" "}
             </span>
             with Wisdom from India&apos;s Finest
           </h1>
-          <p className="text-base md:text-lg text-gray-600">
+          <p className="text-base text-gray-600 md:text-lg">
             Free, open-source API delivering curated quotes from India&apos;s
             most successful entrepreneurs.
             <br />
@@ -70,7 +71,7 @@ export default function Home() {
         </div>
 
         {/* Code Preview */}
-        <div id={ROUTES.QUICKSTART} className="max-w-3xl mx-auto pt-20">
+        <div id={ROUTES.QUICKSTART} className="mx-auto max-w-3xl pt-20">
           <CodePreview />
         </div>
 

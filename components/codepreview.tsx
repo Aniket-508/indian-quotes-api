@@ -1,6 +1,6 @@
-import CodeBlock from "./ui/codeblock";
-import { API_ROUTES, API_BASE_URL } from "@/lib/routes";
 import { API_JSON_OUTPUT } from "@/lib/code";
+import { API_BASE_URL, API_ROUTES } from "@/lib/routes";
+import CodeBlock from "./ui/codeblock";
 
 export default function CodePreview() {
   return (

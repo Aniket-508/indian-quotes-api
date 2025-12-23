@@ -1800,5 +1800,22 @@
         "slug": "tata"
       }
     }
+  },
+  {
+    "quote": "To be an entrepreneur, you need three I's: idea, investment, and most importantly being idiot.",
+    "tags": ["entrepreneurship", "humor", "business"],
+    "source": null,
+    "context": null,
+    "author": {
+      "name": "Ankit Garg",
+      "img": "https://ispf.co.in/wp-content/uploads/2023/10/Ankit-Garg.jpg",
+      "url": "https://www.linkedin.com/in/ankitchiitr/",
+      "slug": "ankit_garg",
+      "company": {
+        "name": "Wakefit",
+        "url": "https://www.wakefit.co/",
+        "slug": "wakefit"
+      }
+    }
   }
 ]

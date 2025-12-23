@@ -1,6 +1,6 @@
 ## Contributing quotes
 
-Thanks for contributing to **Indian Entrepreneur Quotes**!  
+Thanks for contributing to **Indian Quotes API**!  
 This project is data‑driven: all quotes live in `quotes_seed.json` and are synced to Supabase via GitHub Actions.
 
 ### 1. Workflow overview
@@ -44,6 +44,7 @@ Each quote in `quotes_seed.json` looks like this:
 We use `slug` fields to uniquely identify authors and companies. The sync script upserts based on these slugs, so **reusing slugs correctly prevents duplicates**.
 
 - **Company slug** (`author.company.slug`)
+
   - Lowercase, kebab‑case.
   - Example: `"flipkart"`, `"zerodha"`, `"freshworks"`.
   - **If the company already exists in `quotes_seed.json`, you must reuse the existing `slug` and `name`.**
@@ -98,5 +99,3 @@ If you notice a misattributed quote, incorrect slug, or other issue:
 - Submit a PR fixing the relevant object in `quotes_seed.json`.
 
 Thank you for helping build a high‑quality library of Indian founder wisdom! 🙏
-
-

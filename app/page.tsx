@@ -25,13 +25,13 @@ export default function Home() {
             Open Source API for Indian Entrepreneur Quotes
           </div> */}
 
-        <Link
+        <a
           href={LINK.PEERLIST}
           target="_blank"
           className="mb-6 inline-flex justify-center"
         >
           <Image src={PeerlistWinner} alt="Peerlist Launch" />
-        </Link>
+        </a>
 
         <h1 className="mb-6 font-bricolage text-3xl font-bold leading-tight text-gray-900 md:text-4xl lg:text-5xl">
           Inspire Your Next
@@ -57,9 +57,9 @@ export default function Home() {
             <Link href={ROUTES.DOCS}>Get Started</Link>
           </Button>
           <Button variant="outline" size="lg" asChild>
-            <Link href={LINK.GITHUB} target="_blank">
+            <a href={LINK.GITHUB} target="_blank">
               View on GitHub
-            </Link>
+            </a>
           </Button>
         </div>
 

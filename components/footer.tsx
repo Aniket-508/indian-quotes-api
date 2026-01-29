@@ -7,7 +7,7 @@ import Logo from "./logo";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-white">
+    <footer className="border-t border-gray-100 bg-white mt-auto">
       <div className="container mx-auto px-6">
         <div className="grid gap-12 py-12 md:grid-cols-4">
           <div>
@@ -39,22 +39,22 @@ export default function Footer() {
             <h4 className="mb-4 font-semibold text-gray-900">More</h4>
             <ul className="space-y-2 text-sm text-gray-600">
               <li>
-                <Link
+                <a
                   className="hover:text-indigo-600"
                   href={`${LINK.CANNY}/feature-requests`}
                   target="_blank"
                 >
                   Feedback
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
+                <a
                   className="hover:text-indigo-600"
                   href={`${LINK.CANNY}/changelog`}
                   target="_blank"
                 >
                   Changelog
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
@@ -77,7 +77,7 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} Indian Quotes API.{" "}
             <span className="hidden sm:inline">
-              Open-source under MIT License.
+              Open-source under <a href={LINK.LICENSE} target="_blank">MIT License</a>.
             </span>
           </span>
         </div>

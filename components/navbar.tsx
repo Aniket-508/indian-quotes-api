@@ -33,9 +33,9 @@ export default function Navbar() {
           <Logo />
         </div>
         <Button size="icon" className="flex sm:hidden" asChild>
-          <Link href={LINK.GITHUB} target="_blank">
+          <a href={LINK.GITHUB} target="_blank">
             <Github />
-          </Link>
+          </a>
         </Button>
         <div className="hidden items-center space-x-4 sm:flex">
           <Link
@@ -56,14 +56,14 @@ export default function Navbar() {
           >
             Docs
           </Link>
-          <Link
+          <a
             href={LINK.GITHUB}
             target="_blank"
             className={buttonVariants({ variant: "default" })}
           >
             <Github />
             Star on GitHub
-          </Link>
+          </a>
         </div>
       </div>
       <div

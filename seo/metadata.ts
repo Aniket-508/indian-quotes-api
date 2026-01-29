@@ -98,7 +98,7 @@ const baseMetadata: Metadata = {
     capable: true,
   },
   title: {
-    default: `${SITE.NAME} | ${SITE.DESCRIPTION.SHORT}`,
+    default: `${SITE.NAME}`,
     template: `%s | ${SITE.NAME}`,
   },
   description: SITE.DESCRIPTION.LONG,

@@ -7,7 +7,7 @@ import Logo from "./logo";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-100 bg-white mt-auto">
+    <footer className="mt-auto border-t border-gray-100 bg-white">
       <div className="container mx-auto px-6">
         <div className="grid gap-12 py-12 md:grid-cols-4">
           <div>
@@ -77,7 +77,11 @@ export default function Footer() {
           <span>
             © {new Date().getFullYear()} Indian Quotes API.{" "}
             <span className="hidden sm:inline">
-              Open-source under <a href={LINK.LICENSE} target="_blank">MIT License</a>.
+              Open-source under{" "}
+              <a href={LINK.LICENSE} target="_blank">
+                MIT License
+              </a>
+              .
             </span>
           </span>
         </div>

@@ -3,9 +3,11 @@ import { Quote } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import Highlight from "@/components/ui/highlight";
+import { LINK, SITE } from "@/constants";
 import { getAllQuotes, getQuotesByCompanySlug } from "@/lib/quotes-data";
 import { API_BASE_URL, ROUTES } from "@/lib/routes";
 import { titleCase } from "@/lib/utils";
+import { BreadcrumbJsonLd } from "@/seo/json-ld";
 import { createMetadata } from "@/seo/metadata";
 
 // Generate static params for common companies
@@ -36,6 +38,35 @@ export async function generateMetadata({
   });
 }
 
+const CompanyJsonLd = ({ company }: { company: string }) => {
+  const processedCompany = titleCase(company);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: processedCompany,
+    description: `Inspirational quotes from entrepreneurs at ${processedCompany}.`,
+    url: `${ROUTES.COMPANY}/${company}`,
+    image: `${API_BASE_URL}/og?company=${company}`,
+    codeRepository: LINK.GITHUB,
+    programmingLanguage: ["TypeScript", "Next.js", "JavaScript"],
+    license: LINK.LICENSE,
+    isPartOf: {
+      "@type": "SoftwareSourceCode",
+      name: SITE.NAME,
+      url: SITE.URL,
+    },
+    keywords: [processedCompany, "quotes", "inspiration"],
+  };
+
+  return (
+    <script
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      type="application/ld+json"
+    />
+  );
+};
+
 // Enable ISR with 1 hour revalidation
 export const revalidate = 3600;
 
@@ -62,6 +93,17 @@ export default async function CompanyPage({
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: SITE.URL },
+          { name: "Companies", url: `${SITE.URL}${ROUTES.COMPANY}` },
+          {
+            name: processedCompany,
+            url: `${SITE.URL}${ROUTES.COMPANY}/${company}`,
+          },
+        ]}
+      />
+      <CompanyJsonLd company={company} />
       <div className="container mx-auto grow px-6 pb-12 pt-24">
         <div className="mx-auto max-w-4xl">
           <div className="mb-12">

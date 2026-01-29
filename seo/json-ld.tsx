@@ -1,4 +1,5 @@
 import { LINK, SITE } from "@/constants";
+import { getAllQuotes } from "@/lib/quotes-data";
 
 const WebsiteJsonLd = () => {
   const jsonLd = {
@@ -27,6 +28,12 @@ const WebsiteJsonLd = () => {
 };
 
 const SoftwareSourceCodeJsonLd = () => {
+  const quotes = getAllQuotes();
+  const uniqueCompanies = [
+    ...new Set(quotes.map((q) => q.author.company.slug)),
+  ];
+  const uniqueAuthors = [...new Set(quotes.map((q) => q.author.slug))];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
@@ -56,6 +63,7 @@ const SoftwareSourceCodeJsonLd = () => {
     },
     isAccessibleForFree: true,
     dateModified: new Date().toISOString().split("T")[0],
+    numberOfItems: uniqueCompanies.length + uniqueAuthors.length,
   };
 
   return (

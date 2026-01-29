@@ -6,6 +6,7 @@ import { Github, Menu, X } from "lucide-react";
 
 import Logo from "@/components/logo";
 import { Button, buttonVariants } from "@/components/ui/button";
+import { LINK } from "@/constants";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +33,7 @@ export default function Navbar() {
           <Logo />
         </div>
         <Button size="icon" className="flex sm:hidden" asChild>
-          <Link href={ROUTES.GITHUB} target="_blank">
+          <Link href={LINK.GITHUB} target="_blank">
             <Github />
           </Link>
         </Button>
@@ -56,7 +57,7 @@ export default function Navbar() {
             Docs
           </Link>
           <Link
-            href={ROUTES.GITHUB}
+            href={LINK.GITHUB}
             target="_blank"
             className={buttonVariants({ variant: "default" })}
           >

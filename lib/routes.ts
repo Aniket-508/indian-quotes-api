@@ -1,3 +1,5 @@
+import { SITE } from "@/constants";
+
 export const ROUTES = {
   HOME: "/",
   DOCS: "/docs",
@@ -6,10 +8,6 @@ export const ROUTES = {
   COMPANY: "/company",
   QUICKSTART: "quickstart",
   FEATURES: "features",
-  GITHUB: "https://github.com/Aniket-508/indian-quotes-api",
-  CANNY: "https://indian-quotes-api.canny.io",
-  PEERLIST_PROJECT:
-    "https://peerlist.io/aniket_pawar/project/indian-quotes-api",
 };
 
 export const API_ROUTES = {
@@ -17,6 +15,4 @@ export const API_ROUTES = {
   RANDOM: "/random",
 };
 
-export const BASE_URL = `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`;
-
-export const API_BASE_URL = `${BASE_URL}/api`;
+export const API_BASE_URL = `${SITE.URL}/api`;

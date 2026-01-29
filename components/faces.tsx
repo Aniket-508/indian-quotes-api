@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { BASE_URL, ROUTES } from "@/lib/routes";
+import { SITE } from "@/constants";
+import { ROUTES } from "@/lib/routes";
 
 const data = [
   {
@@ -34,7 +35,7 @@ export default function Faces() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-y-1 -space-x-1.5 text-center">
       {data.map(({ name, image, slug }) => (
-        <Link key={name} href={`${BASE_URL}${ROUTES.AUTHOR}/${slug}`}>
+        <Link key={name} href={`${SITE.URL}${ROUTES.AUTHOR}/${slug}`}>
           <Image
             key={name}
             src={image}

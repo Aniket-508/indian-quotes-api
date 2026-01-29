@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
 
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import Highlight from "@/components/ui/highlight";
 import { getAllQuotes, getQuotesByCompanySlug } from "@/lib/quotes-data";
-import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
+import { API_BASE_URL, ROUTES } from "@/lib/routes";
 import { titleCase } from "@/lib/utils";
+import { createMetadata } from "@/seo/metadata";
 
 // Generate static params for common companies
 export async function generateStaticParams() {
@@ -28,27 +27,13 @@ export async function generateMetadata({
   const slug = (await params).slug;
   const company = decodeURIComponent(slug);
   const processedCompany = titleCase(company);
-  const title = `${processedCompany} Quotes - Indian Quotes API`;
-  const description = `Inspirational quotes from entrepreneurs at ${processedCompany}`;
-  const images = `${API_BASE_URL}/og?company=${slug}`;
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: `${BASE_URL}${ROUTES.COMPANY}/${slug}`,
-      images,
-      locale: "en_US",
-      type: "profile",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images,
-    },
-  };
+
+  return createMetadata({
+    title: `${processedCompany} Quotes`,
+    description: `Inspirational quotes from entrepreneurs at ${processedCompany}`,
+    image: `${API_BASE_URL}/og?company=${slug}`,
+    canonical: `${ROUTES.COMPANY}/${slug}`,
+  });
 }
 
 // Enable ISR with 1 hour revalidation
@@ -76,8 +61,7 @@ export default async function CompanyPage({
   const processedCompany = titleCase(company);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <Navbar />
+    <>
       <div className="container mx-auto grow px-6 pb-12 pt-24">
         <div className="mx-auto max-w-4xl">
           <div className="mb-12">
@@ -127,7 +111,6 @@ export default async function CompanyPage({
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }

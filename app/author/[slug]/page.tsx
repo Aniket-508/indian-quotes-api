@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import { Quote } from "lucide-react";
 
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 import { Badge } from "@/components/ui/badge";
 import Highlight from "@/components/ui/highlight";
 import { getAllQuotes, getQuotesByAuthorSlug } from "@/lib/quotes-data";
-import { API_BASE_URL, BASE_URL, ROUTES } from "@/lib/routes";
+import { API_BASE_URL, ROUTES } from "@/lib/routes";
 import { titleCase } from "@/lib/utils";
+import { createMetadata } from "@/seo/metadata";
 
 // Generate static params for all authors
 export async function generateStaticParams() {
@@ -26,27 +25,13 @@ export async function generateMetadata({
   const slug = (await params).slug;
   const author = decodeURIComponent(slug);
   const processedAuthor = titleCase(author);
-  const title = `${processedAuthor} Quotes - Indian Quotes API`;
-  const description = `Collection of inspirational quotes by ${processedAuthor}.`;
-  const images = `${API_BASE_URL}/og?author=${slug}`;
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      url: `${BASE_URL}${ROUTES.AUTHOR}/${slug}`,
-      images,
-      locale: "en_US",
-      type: "profile",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images,
-    },
-  };
+
+  return createMetadata({
+    title: `${processedAuthor} Quotes`,
+    description: `Collection of inspirational quotes by ${processedAuthor}.`,
+    image: `${API_BASE_URL}/og?author=${slug}`,
+    canonical: `${ROUTES.AUTHOR}/${slug}`,
+  });
 }
 
 // Enable ISR with 1 hour revalidation
@@ -68,8 +53,7 @@ export default async function AuthorPage({
   const processedAuthor = titleCase(author);
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <Navbar />
+    <>
       <div className="container mx-auto grow px-6 pb-12 pt-24">
         <div className="mx-auto max-w-4xl">
           <div className="mb-8">
@@ -119,7 +103,6 @@ export default async function AuthorPage({
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }

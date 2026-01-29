@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 
+import { SITE } from "@/constants";
 import { getAllQuotes } from "@/lib/quotes-data";
-import { BASE_URL, ROUTES } from "@/lib/routes";
+import { ROUTES } from "@/lib/routes";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Get all quotes to extract unique authors and companies
@@ -14,19 +15,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Base URLs
   const baseUrls = [
     {
-      url: BASE_URL,
+      url: SITE.URL,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${BASE_URL}${ROUTES.DOCS}`,
+      url: `${SITE.URL}${ROUTES.DOCS}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}${ROUTES.RANDOM}`,
+      url: `${SITE.URL}${ROUTES.RANDOM}`,
       lastModified: new Date(),
       changeFrequency: "never",
       priority: 0,
@@ -35,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Author pages
   const authorUrls = uniqueAuthors.map((author) => ({
-    url: `${BASE_URL}${ROUTES.AUTHOR}/${encodeURIComponent(author)}`,
+    url: `${SITE.URL}${ROUTES.AUTHOR}/${encodeURIComponent(author)}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.6,
@@ -43,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Company pages
   const companyUrls = uniqueCompanies.map((company) => ({
-    url: `${BASE_URL}${ROUTES.COMPANY}/${encodeURIComponent(company)}`,
+    url: `${SITE.URL}${ROUTES.COMPANY}/${encodeURIComponent(company)}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.6,

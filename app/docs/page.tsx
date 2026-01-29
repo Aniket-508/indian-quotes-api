@@ -1,7 +1,5 @@
 import EndpointCard from "@/components/docs/endpointcard";
 import FieldList from "@/components/docs/fieldlist";
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
 import { API_JSON_OUTPUT } from "@/lib/code";
 import {
   ALLOWED_QUERY_PARAMS,
@@ -9,36 +7,24 @@ import {
   RATE_LIMITING_HEADERS,
   RESPONSE_FIELDS_FORMAT,
 } from "@/lib/docs";
-import { DOCS_METADATA } from "@/lib/meta";
-import { API_BASE_URL, API_ROUTES } from "@/lib/routes";
+import { API_BASE_URL, API_ROUTES, ROUTES } from "@/lib/routes";
+import { createMetadata } from "@/seo/metadata";
 
-export const metadata = {
-  title: DOCS_METADATA.TITLE,
-  description: DOCS_METADATA.DESCRIPTION,
-  openGraph: {
-    title: DOCS_METADATA.TITLE,
-    description: DOCS_METADATA.DESCRIPTION,
-    url: DOCS_METADATA.URL,
-    images: DOCS_METADATA.IMAGE,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: DOCS_METADATA.TITLE,
-    description: DOCS_METADATA.DESCRIPTION,
-    images: DOCS_METADATA.IMAGE,
-  },
-};
+export const metadata = createMetadata({
+  title: "API Documentation",
+  description:
+    "Complete documentation for the Indian Quotes API endpoints, including examples and usage guidelines.",
+  image:
+    "https://ik.imagekit.io/2oajjadqkz/1731074413676.jpg?updatedAt=1731074450524",
+  canonical: ROUTES.DOCS,
+});
 
 function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Navbar />
-      <div className="min-h-screen bg-gray-50 pb-12 pt-24">
-        <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-4xl">{children}</div>
-        </div>
+      <div className="container mx-auto px-6 pb-12 pt-24">
+        <div className="mx-auto max-w-4xl">{children}</div>
       </div>
-      <Footer />
     </>
   );
 }

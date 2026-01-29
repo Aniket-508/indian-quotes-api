@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { LINK } from "@/constants";
 import { ROUTES } from "@/lib/routes";
 import Logo from "./logo";
 
@@ -40,7 +41,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="hover:text-indigo-600"
-                  href={`${ROUTES.CANNY}/feature-requests`}
+                  href={`${LINK.CANNY}/feature-requests`}
                   target="_blank"
                 >
                   Feedback
@@ -49,7 +50,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="hover:text-indigo-600"
-                  href={`${ROUTES.CANNY}/changelog`}
+                  href={`${LINK.CANNY}/changelog`}
                   target="_blank"
                 >
                   Changelog
